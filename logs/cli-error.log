@@ -1,0 +1,118 @@
+2017-09-13 19:38:12 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'lifelong_app.categories' doesn't exist in C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 131
+Stack Trace:
+#0 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', 'categories', Array, Object(Cake\Database\Schema\TableSchema))
+#1 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(63): Cake\Database\Schema\Collection->describe('categories', Array)
+#2 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Table.php(531): Cake\Database\Schema\CachedCollection->describe('categories')
+#3 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Table.php(652): Cake\ORM\Table->getSchema()
+#4 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(217): Cake\ORM\Table->getPrimaryKey()
+#5 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'categories', 'Categories')
+#7 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Categories')
+#8 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Categories')
+#9 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(51): Bake\Shell\BakeShell->Bake\Shell\{closure}('categories', 0)
+#10 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\BakeShell.php(258): Cake\Collection\Collection->each(Object(Closure))
+#11 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\Shell.php(458): Bake\Shell\BakeShell->all('categories')
+#12 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(230): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2017-09-13 19:38:47 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'lifelong_app.categories' doesn't exist in C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Database\Schema\Collection.php on line 131
+Stack Trace:
+#0 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', 'categories', Array, Object(Cake\Database\Schema\TableSchema))
+#1 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(63): Cake\Database\Schema\Collection->describe('categories', Array)
+#2 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Table.php(531): Cake\Database\Schema\CachedCollection->describe('categories')
+#3 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Table.php(652): Cake\ORM\Table->getSchema()
+#4 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(217): Cake\ORM\Table->getPrimaryKey()
+#5 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'categories', 'Categories')
+#7 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\Task\ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Categories')
+#8 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Categories')
+#9 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Collection\CollectionTrait.php(51): Bake\Shell\BakeShell->Bake\Shell\{closure}('categories', 0)
+#10 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\bake\src\Shell\BakeShell.php(258): Cake\Collection\Collection->each(Object(Closure))
+#11 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\Shell.php(458): Bake\Shell\BakeShell->all('categories')
+#12 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(230): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2017-09-20 19:03:30 Warning: Warning (512): Association property name "start_notification" clashes with field of same name of table "formations". You should explicitly specify the "propertyName" option. in [C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Association.php, line 723]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+Cake\ORM\Association::getProperty() - CORE\src\ORM\Association.php, line 723
+Bake\Shell\Task\ModelTask::getEntityPropertySchema() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 577
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 133
+Bake\Shell\Task\ModelTask::bake() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 110
+Bake\Shell\Task\ModelTask::main() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 97
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 257
+Cake\Collection\Collection::each() - CORE\src\Collection\CollectionTrait.php, line 51
+Bake\Shell\BakeShell::all() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 258
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 458
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 230
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2017-09-20 19:03:34 Warning: Warning (512): Association property name "start_notification" clashes with field of same name of table "formations". You should explicitly specify the "propertyName" option. in [C:\Program Files (x86)\EasyPHP-Devserver-17\eds-www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Association.php, line 723]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+Cake\ORM\Association::getProperty() - CORE\src\ORM\Association.php, line 723
+Bake\Utility\Model\AssociationFilter::filterAssociations() - ROOT\vendor\cakephp\bake\src\Utility\Model\AssociationFilter.php, line 96
+Bake\Shell\Task\TemplateTask::_filteredAssociations() - ROOT\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php, line 480
+Bake\Shell\Task\TemplateTask::_loadController() - ROOT\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php, line 300
+Bake\Shell\Task\TemplateTask::main() - ROOT\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php, line 148
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 257
+Cake\Collection\Collection::each() - CORE\src\Collection\CollectionTrait.php, line 51
+Bake\Shell\BakeShell::all() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 258
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 458
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 230
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2017-09-21 19:17:14 Warning: Warning (512): Association property name "role" clashes with field of same name of table "users". You should explicitly specify the "propertyName" option. in [C:\Program Files (x86)\Ampps\www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Association.php, line 724]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+Cake\ORM\Association::getProperty() - CORE\src\ORM\Association.php, line 724
+Bake\Shell\Task\ModelTask::getEntityPropertySchema() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 577
+Bake\Shell\Task\ModelTask::getTableContext() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 133
+Bake\Shell\Task\ModelTask::bake() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 110
+Bake\Shell\Task\ModelTask::main() - ROOT\vendor\cakephp\bake\src\Shell\Task\ModelTask.php, line 97
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 257
+Cake\Collection\Collection::each() - CORE\src\Collection\CollectionTrait.php, line 51
+Bake\Shell\BakeShell::all() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 258
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 458
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 230
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2017-09-21 19:17:20 Warning: Warning (512): Association property name "role" clashes with field of same name of table "users". You should explicitly specify the "propertyName" option. in [C:\Program Files (x86)\Ampps\www\LifeLong_App\vendor\cakephp\cakephp\src\ORM\Association.php, line 724]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+Cake\ORM\Association::getProperty() - CORE\src\ORM\Association.php, line 724
+Bake\Utility\Model\AssociationFilter::filterAssociations() - ROOT\vendor\cakephp\bake\src\Utility\Model\AssociationFilter.php, line 96
+Bake\Shell\Task\TemplateTask::_filteredAssociations() - ROOT\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php, line 480
+Bake\Shell\Task\TemplateTask::_loadController() - ROOT\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php, line 300
+Bake\Shell\Task\TemplateTask::main() - ROOT\vendor\cakephp\bake\src\Shell\Task\TemplateTask.php, line 148
+Bake\Shell\BakeShell::Bake\Shell\{closure}() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 257
+Cake\Collection\Collection::each() - CORE\src\Collection\CollectionTrait.php, line 51
+Bake\Shell\BakeShell::all() - ROOT\vendor\cakephp\bake\src\Shell\BakeShell.php, line 258
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 458
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 230
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
