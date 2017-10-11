@@ -3,21 +3,26 @@
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\Category[]|\Cake\Collection\CollectionInterface $categories
   */
+$loguser = $this->request->session()->read('Auth.User');
 ?>
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Navigation') ?></li>
-        <li><?= $this->Html->link(__('Buildings'), ['controller' => 'Buildings', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Categories'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Civilities'), ['controller' => 'Civilities', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('Employees'), ['controller' => 'Employees', 'action' => 'index']) ?> </li>
+        <?php if($loguser['role'] === 'Administrator') {
+            echo '<li>'.$this->Html->link(__('Civilities'), ['controller' => 'Civilities', 'action' => 'index']).'</li>';
+            echo '<li>'.$this->Html->link(__('Languages'), ['controller' => 'Languages', 'action' => 'index']).'</li>';
+            echo '<li>'.$this->Html->link(__('Position Titles'), ['controller' => 'PositionTitles', 'action' => 'index']).'</li>';
+        } ?>
         <li><?= $this->Html->link(__('Formations'), ['controller' => 'Formations', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Frequencies'), ['controller' => 'Frequencies', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Languages'), ['controller' => 'Languages', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Modalities'), ['controller' => 'Modalities', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Notifications'), ['controller' => 'Notifications', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Position Titles'), ['controller' => 'PositionTitles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
+        <?php if($loguser['role'] === 'Administrator') {
+            echo '<li>'.$this->Html->link(__('Buildings'), ['controller' => 'Buildings', 'action' => 'index']).'</li>';
+            echo '<li>'.$this->Html->link(__('Categories'), ['controller' => 'Categories', 'action' => 'index']).'</li>';
+            echo '<li>'.$this->Html->link(__('Frequencies'), ['controller' => 'Frequencies', 'action' => 'index']).'</li>';
+            echo '<li>'.$this->Html->link(__('Modalities'), ['controller' => 'Modalities', 'action' => 'index']).'</li>';
+            echo '<li>'.$this->Html->link(__('Notifications'), ['controller' => 'Notifications', 'action' => 'index']).'</li>';
+            echo '<li>'.$this->Html->link(__('Users'), ['controller' => 'Users', 'action' => 'index']).'</li>';
+        } ?>
     </ul>
     <br /><br />
     <ul class="side-nav">
