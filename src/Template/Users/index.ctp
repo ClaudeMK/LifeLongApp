@@ -4,6 +4,7 @@
   * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
   */
 $loguser = $this->request->session()->read('Auth.User');
+//test
 ?>
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
