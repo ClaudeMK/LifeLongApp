@@ -44,4 +44,19 @@
             <td><?= $this->Number->format($formation->duration) ?></td>
         </tr>
     </table>
+    <div class="related">
+        <h4><?= __('Related Position titles') ?></h4>
+        <?php if(!empty($formation->positionTitle)): ?>
+          <table>
+              <tr>
+                <th scope="col"><?= __('Title') ?></th>
+              </tr>
+              <?php foreach ($formation->positionTitle as $positionTitle): ?>
+                <tr>
+                  <td><?= h($positionTitle->title) ?></td>
+                </tr>
+              <?php endforeach; ?>
+          </table>
+        <?php endif; ?>
+    </div>
 </div>

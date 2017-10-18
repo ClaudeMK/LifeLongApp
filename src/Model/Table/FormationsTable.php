@@ -33,7 +33,7 @@ class FormationsTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-        
+
         $this->addBehavior('Search.Search');
 
         // Setup search filter using search manager
@@ -81,6 +81,11 @@ class FormationsTable extends Table
             'foreignKey' => 'notification_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsToMany('PositionTitles', [
+            'foreignKey' => 'formation_id',
+            'targetForeignKey' => 'position_title_id',
+            'joinTable' => 'formations_positionTitles'
+        ]);
     }
 
     /**
@@ -99,8 +104,8 @@ class FormationsTable extends Table
             ->requirePresence('number', 'create')
             ->notEmpty('number')
             ->add('number' , ['unique' => [
-            'rule' => 'validateUnique', 
-            'provider' => 'table', 
+            'rule' => 'validateUnique',
+            'provider' => 'table',
             'message' => 'Not unique']
         ]);
 
@@ -132,6 +137,7 @@ class FormationsTable extends Table
         $rules->add($rules->existsIn(['frequencie_id'], 'Frequencies'));
         $rules->add($rules->existsIn(['notification_id'], 'Notifications'));
         $rules->add($rules->existsIn(['modalitie_id'], 'Modalities'));
+        //$rules->add($rules->existsIn(['position_title_id'], 'PositionTitles'));
 
         return $rules;
     }

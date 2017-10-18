@@ -238,7 +238,7 @@ return [
             //'port' => 'non_standard_port_number',
             'username' => 'lifelong_usr',
             'password' => '*k$R@z2AvmR$',
-            'database' => 'lifelong_bd',
+            'database' => 'lifelong_bd_TESTING',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
