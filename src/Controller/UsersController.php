@@ -3,6 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Mailer\Email;
+use Cake\ORM\TableRegistry;
+use Cake\I18n\FrozenTime;
+
 
 /**
  * Users Controller
@@ -118,15 +122,21 @@ class UsersController extends AppController
     }
     
     public function login()
-    {
-            if ($this->request->is('post')) {
-                    $user = $this->Auth->identify();
-                    if ($user) {
-                            $this->Auth->setUser($user);
-                            return $this->redirect($this->Auth->redirectUrl());
-                    }
-                    $this->Flash->error(__('Invalid username or password, try again'));
+    {   
+        if ($this->request->is('post')) {
+            if($this->request->data('form') == '1') {
+                $user = $this->Auth->identify();
+                if ($user) {
+                        $this->Auth->setUser($user);
+                        return $this->redirect($this->Auth->redirectUrl());
+                }
+                $this->Flash->error(__('Invalid username or password, try again'));
+            } else if($this->request->data('form') == '2') {
+                $emailEmp = $this->request->data('email');
+                $this->sendFormationPlan($emailEmp);
             }
+        }
+        
     }
 
     public function logout()
@@ -140,5 +150,31 @@ class UsersController extends AppController
         }
         
         return false;
+    }
+    
+    public function sendFormationPlan($emailEmp) {
+        $this->loadModel('Employees');
+        $employee = $this->Employees->find()->where(['email' => $emailEmp])->first();
+        $curr_timestamp = date('Y-m-d H:i:s');
+        
+        if($employee->last_sent_formation_plan == null || !$employee->last_sent_formation_plan->wasWithinLast('24 hours')) {
+            if($employee != null) {
+                /*
+                $email = new Email('default');
+                $email->to($emailEmp)
+                    ->subject("Formation plan")
+                    ->send("Formation plan");
+                */
+                    
+                $employee->last_sent_formation_plan = $curr_timestamp;
+                TableRegistry::get('Employees')->save($employee);
+                $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
+            } else {
+                $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
+            }
+        } else {
+            $this->Flash->error(__('You must wait 24 hours before asking your formation plan again.'));
+        }
+        
     }
 }

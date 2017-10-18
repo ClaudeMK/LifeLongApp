@@ -10,8 +10,6 @@ class ContactController extends AppController
 {
     public function index()
     {
-        
-        
         $contact = new ContactForm();
         if ($this->request->is('post')) {
             
