@@ -24,10 +24,11 @@
             echo $this->Form->control('title');
             echo $this->Form->control('categorie_id', ['options' => $categories]);
             echo $this->Form->control('frequencie_id', ['options' => $frequencies]);
-            echo $this->Form->control('notif_start', ['options' => $frequencies]);
+            echo $this->Form->control('notification_id', ['options' => $frequencies]);
             echo $this->Form->control('modalitie_id', ['options' => $modalities]);
             echo $this->Form->control('duration');
             echo $this->Form->control('note');
+            echo $this->Form->control('position_titles._ids', ['options' => $positionsTitles]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

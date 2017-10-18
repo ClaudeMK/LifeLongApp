@@ -113,7 +113,8 @@ class FormationsController extends AppController
         $frequencies = $this->Formations->Frequencies->find('list', ['limit' => 200]);
         $notifications = $this->Formations->Notifications->find('list', ['limit' => 200]);
         $modalities = $this->Formations->Modalities->find('list', ['limit' => 200]);
-        $this->set(compact('formation', 'categories', 'frequencies', 'modalities', 'notifications'));
+        $positionsTitles = $this->Formations->PositionTitles->find('list', ['limit' => 200]);
+        $this->set(compact('formation', 'categories', 'frequencies', 'modalities', 'notifications', 'positionsTitles'));
         $this->set('_serialize', ['formation']);
     }
 

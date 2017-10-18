@@ -46,12 +46,13 @@
     </table>
     <div class="related">
         <h4><?= __('Related Position titles') ?></h4>
-        <?php if(!empty($formation->positionTitle)): ?>
+
+        <?php if(!empty($formation->position_titles)): ?>
           <table>
               <tr>
                 <th scope="col"><?= __('Title') ?></th>
               </tr>
-              <?php foreach ($formation->positionTitle as $positionTitle): ?>
+              <?php foreach ($formation->position_titles as $positionTitle): ?>
                 <tr>
                   <td><?= h($positionTitle->title) ?></td>
                 </tr>

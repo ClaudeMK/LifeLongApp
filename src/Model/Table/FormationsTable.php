@@ -62,7 +62,7 @@ class FormationsTable extends Table
         ]);
 
         $this->setTable('formations');
-        $this->setDisplayField('id');
+        $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Categories', [
