@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Form\ContactForm;
 
-
+//allo
 class ContactController extends AppController
 {
     public function index()
