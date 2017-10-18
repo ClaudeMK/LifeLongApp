@@ -21,6 +21,7 @@
         <legend><?= __('Edit Position Title') ?></legend>
         <?php
             echo $this->Form->control('title');
+            echo $this->Form->control('formations._ids', ['options' => $formations]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

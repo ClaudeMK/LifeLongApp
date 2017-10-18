@@ -28,6 +28,7 @@
             echo $this->Form->control('modalitie_id', ['options' => $modalities]);
             echo $this->Form->control('duration');
             echo $this->Form->control('note');
+            echo $this->Form->control('position_titles._ids', ['options' => $positionsTitles]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -2646,6 +2646,7 @@ Stack Trace:
 #2 {main}
 
 
+
 2017-10-15 23:24:16 Error: Fatal Error (1): Call to a member function find() on boolean in [C:\Program Files (x86)\Ampps\www\LifeLong_App\src\Controller\UsersController.php, line 131]
 Request URL: /
 Referer URL: http://localhost/LifeLong_App/index.php
@@ -2924,6 +2925,7 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 80
 
 
 
+
 2017-10-16 20:51:45 Error: [BadMethodCallException] Unknown finder method "SELECT Employees.id AS `Employees__id`, Employees.number AS `Employees__number`, Employees.civilitie_id AS `Employees__civilitie_id`, Employees.last_name AS `Employees__last_name`, Employees.first_name AS `Employees__first_name`, Employees.language_id AS `Employees__language_id`, Employees.cell_number AS `Employees__cell_number`, Employees.email AS `Employees__email`, Employees.position_title_id AS `Employees__position_title_id`, Employees.building_id AS `Employees__building_id`, Employees.parent_id AS `Employees__parent_id`, Employees.additional_Infos AS `Employees__additional_Infos`, Employees.last_sent_formation_plan AS `Employees__last_sent_formation_plan`, Employees.active AS `Employees__active` FROM employees Employees"
 Request URL: /
 Referer URL: http://localhost/LifeLong_App/index.php
@@ -3044,6 +3046,7 @@ Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHa
 
 
 
+
 2017-10-16 21:05:23 Warning: Headers already sent in C:\Program Files (x86)\Ampps\www\LifeLong_App\src\Controller\UsersController.php:135
 2017-10-16 21:05:23 Error: [Cake\Error\FatalErrorException] Call to a member function toArray() on null in C:\Program Files (x86)\Ampps\www\LifeLong_App\src\Controller\UsersController.php on line 135
 Request URL: /
@@ -3052,6 +3055,7 @@ Stack Trace:
 #0 C:\Program Files (x86)\Ampps\www\LifeLong_App\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(105): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Program File...', 135)
 #1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
 #2 {main}
+
 
 
 2017-10-16 21:06:17 Error: Fatal Error (1): Call to a member function count() on null in [C:\Program Files (x86)\Ampps\www\LifeLong_App\src\Controller\UsersController.php, line 135]
@@ -3064,6 +3068,7 @@ Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE\src\Error\BaseErrorHa
 
 
 
+
 2017-10-16 21:06:17 Warning: Headers already sent in C:\Program Files (x86)\Ampps\www\LifeLong_App\src\Controller\UsersController.php:135
 2017-10-16 21:06:17 Error: [Cake\Error\FatalErrorException] Call to a member function count() on null in C:\Program Files (x86)\Ampps\www\LifeLong_App\src\Controller\UsersController.php on line 135
 Request URL: /
@@ -3072,6 +3077,7 @@ Stack Trace:
 #0 C:\Program Files (x86)\Ampps\www\LifeLong_App\vendor\cakephp\cakephp\src\Error\BaseErrorHandler.php(105): Cake\Error\BaseErrorHandler->handleFatalError(1, 'Call to a membe...', 'C:\\Program File...', 135)
 #1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
 #2 {main}
+
 
 
 2017-10-16 21:10:01 Error: Fatal Error (1): Call to undefined function App\Controller\sendFormationPlan() in [C:\Program Files (x86)\Ampps\www\LifeLong_App\src\Controller\UsersController.php, line 136]

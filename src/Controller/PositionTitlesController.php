@@ -36,7 +36,7 @@ class PositionTitlesController extends AppController
     public function view($id = null)
     {
         $positionTitle = $this->PositionTitles->get($id, [
-            'contain' => ['Employees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees']]
+            'contain' => ['Employees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees'], 'Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]
         ]);
 
         $this->set('positionTitle', $positionTitle);
@@ -60,7 +60,8 @@ class PositionTitlesController extends AppController
             }
             $this->Flash->error(__('The position title could not be saved. Please, try again.'));
         }
-        $this->set(compact('positionTitle'));
+        $formations = $this->PositionTitles->Formations->find('list', ['limit' => 200]);
+        $this->set(compact('positionTitle', 'formations'));
         $this->set('_serialize', ['positionTitle']);
     }
 
@@ -85,7 +86,8 @@ class PositionTitlesController extends AppController
             }
             $this->Flash->error(__('The position title could not be saved. Please, try again.'));
         }
-        $this->set(compact('positionTitle'));
+        $formations = $this->PositionTitles->Formations->find('list', ['limit' => 200]);
+        $this->set(compact('positionTitle', 'formations'));
         $this->set('_serialize', ['positionTitle']);
     }
 
@@ -108,12 +110,12 @@ class PositionTitlesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    
+
     public function isAuthorized($user) {
         if(isset($user['role']) && $user['role'] === 'Administrator') {
             return true;
         }
-        
+
         return false;
     }
 }
