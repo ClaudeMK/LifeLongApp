@@ -14,7 +14,7 @@
 <?= $this->Form->end() ?>
 </div>
 <br /><br /><br />
-<div class="users form">
+<div class="email form">
 <?= $this->Flash->render() ?>
 <?= $this->Form->create() ?>
     <fieldset>

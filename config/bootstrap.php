@@ -101,7 +101,7 @@ if (Configure::read('debug')) {
  * choice but using UTC makes time calculations / conversions easier.
  * Check http://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
-date_default_timezone_set('UTC');
+date_default_timezone_set('America/Montreal');
 
 /*
  * Configure the mbstring extension to use the correct encoding.
@@ -220,7 +220,7 @@ Type::build('timestamp')
  * Debug Kit should not be installed on a production system
  */
 if (Configure::read('debug')) {
-    Plugin::load('DebugKit', ['bootstrap' => false]);
+    Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
 Plugin::load('Search');
