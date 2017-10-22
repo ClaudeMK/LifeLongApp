@@ -163,13 +163,4 @@ class EmployeesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    
-    public function sendFormationPlanHomePage($email) {
-        $sendOK = false;
-        
-        die($email);
-        
-        
-        return $sendOK;
-    }
 }

@@ -6,6 +6,7 @@ use Cake\Event\Event;
 use Cake\Mailer\Email;
 use Cake\ORM\TableRegistry;
 use Cake\I18n\FrozenTime;
+use Dompdf\Dompdf;
 
 
 /**
@@ -159,16 +160,42 @@ class UsersController extends AppController
         
         if($employee->last_sent_formation_plan == null || !$employee->last_sent_formation_plan->wasWithinLast('24 hours')) {
             if($employee != null) {
-                /*
-                $email = new Email('default');
-                $email->to($emailEmp)
-                    ->subject("Formation plan")
-                    ->send("Formation plan");
-                */
+                
+                ob_start();
+                include "C:/Program Files (x86)/Ampps/www/LifeLong_App/src/Template/Employees/TemplateFormationPlan/formation_plan.php";
+                $html = ob_get_clean();
+                ob_end_clean();
+
+                // instantiate and use the dompdf class
+                $dompdf = new Dompdf();
+                $dompdf->loadHtml($html);
+
+                // (Optional) Setup the paper size and orientation
+                $dompdf->setPaper('A4', 'portrait');
+
+                // Render the HTML as PDF
+                $dompdf->render();
+
+                // Output the generated PDF to Browser
+                $pdf_gen = $dompdf->output();
+
+                if(file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLong_App/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
+                    $email = new Email('default');
+                    $email->to($emailEmp)
+                        ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLong_App/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
+                        ->subject("Formation plan")
+                        ->send("Formation plan");                                             
                     
                 $employee->last_sent_formation_plan = $curr_timestamp;
                 TableRegistry::get('Employees')->save($employee);
                 $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
+                    
+                }
+                
+                
+                
+                
+                
             } else {
                 $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
             }
@@ -176,5 +203,7 @@ class UsersController extends AppController
             $this->Flash->error(__('You must wait 24 hours before asking your formation plan again.'));
         }
         
+        
     }
+    
 }
