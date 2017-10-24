@@ -1,4 +1,4 @@
-CREATE TABLE `formationCompletes` (
+CREATE TABLE `formation_completes` (
   id int(11) NOT NULL AUTO_INCREMENT,
   employee_id int(11) NOT NULL,
   formation_id int(11) NOT NULL,
