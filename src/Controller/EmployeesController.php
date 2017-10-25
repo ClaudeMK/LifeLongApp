@@ -15,7 +15,9 @@ use Cake\Mailer\Email;
  */
 class EmployeesController extends AppController {
 
-    public function initialize() {
+
+    public function initialize()
+    {
         parent::initialize();
 
         $this->loadComponent('Search.Prg', [
@@ -56,7 +58,7 @@ class EmployeesController extends AppController {
      */
     public function view($id = null) {
         $employee = $this->Employees->get($id, [
-            'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees',
+            'contain' => ['Civilities', 'Languages', 'PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']], 'Buildings', 'ParentEmployees',
                 'ChildEmployees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings']]
         ]);
 
@@ -106,7 +108,7 @@ class EmployeesController extends AppController {
      */
     public function edit($id = null) {
         $employee = $this->Employees->get($id, [
-            'contain' => []
+            'contain' => ['PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]]
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
@@ -130,7 +132,14 @@ class EmployeesController extends AppController {
         $positionTitles = $this->Employees->PositionTitles->find('list', ['limit' => 200]);
         $buildings = $this->Employees->Buildings->find('list', ['limit' => 200]);
         $parentEmployees = $this->Employees->ParentEmployees->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'civilities', 'languages', 'positionTitles', 'buildings', 'parentEmployees'));
+
+        $this->loadModel('FormationCompletes');
+        $formationComplete = $this->FormationCompletes->find('all')
+          ->where(['FormationCompletes.employee_id = ' => $employee->id]);
+
+
+
+        $this->set(compact('employee', 'civilities', 'languages', 'positionTitles', 'buildings', 'parentEmployees', 'formationComplete'));
         $this->set('_serialize', ['employee']);
     }
 

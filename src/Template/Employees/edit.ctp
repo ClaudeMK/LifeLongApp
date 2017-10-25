@@ -2,6 +2,7 @@
 /**
   * @var \App\View\AppView $this
   */
+  use Cake\I18n\Time;
 ?>
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -37,4 +38,66 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+
+    <div class="related">
+      <h4><?= __('Related Formations') ?></h4>
+
+      <?php if(!empty($employee->position_title->formations)): ?>
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+              <th scope="col"><?= __('title') ?></th>
+              <th scope="col"><?= __('Category') ?></th>
+              <th scope="col" class="actions"><?= __('Actions') ?></th>
+          </tr>
+          <?php foreach ($employee->position_title->formations as $formations): ?>
+          <tr>
+              <td><?= h($formations->title) ?></td>
+              <td><?= h($formations->category->title) ?></td>
+              <td class="actions">
+                  <?= $this->Html->link(__('View'), ['controller' => 'Formations', 'action' => 'view', $formations->id]) ?>
+                  <?= $this->Html->link(__('Edit'), ['controller' => 'Formations', 'action' => 'edit', $formations->id, 'class' => 'button']) ?>
+              </td>
+          </tr>
+          <?php endforeach; ?>
+        </table>
+
+        <h5><?= __('Formations status') ?></h5>
+
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+              <th scope="col"><?= __('title') ?></th>
+              <th scope="col"><?= __('status') ?></th>
+              <th scope="col" class="actions"><?= __('Actions') ?></th>
+          </tr>
+          <?php $compteur = 0; ?>
+          <?php foreach($formationComplete as $formationComplete): ?>
+            <?php
+                  $frequency = $employee->position_title->formations[$compteur]->frequency->title;
+                  $frequence = new Time($frequency);
+                  $lastTimeCompleted = new Time($formationComplete->lastTime_completed);
+                  if($lastTimeCompleted->wasWithinLast($frequency)){
+                    $Completed = true;
+                  }else{
+                    $Completed = false;
+                  }?>
+            <tr>
+              <td><?= ($employee->position_title->formations[$compteur]->title) ?></td>
+              <td> <?php if($Completed == true){
+                echo('completer');
+              } else {
+                echo('pas completer');
+              } ?> </td>
+            </tr>
+            <?php $compteur = $compteur + 1; ?>
+          <?php endforeach; ?>
+        </table>
+
+        <?php endif; ?>
+    </div>
+
+    <?php foreach($formationComplete as $formationComplete): ?>
+      <?= ($formationComplete->id) ?>
+    <?php endforeach; ?>
+
+
 </div>
