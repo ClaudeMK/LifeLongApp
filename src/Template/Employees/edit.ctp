@@ -41,67 +41,45 @@
 
     <div class="related">
       <h4><?= __('Related Formations') ?></h4>
-
+      <?php $compteur = 0; ?>
       <?php if(!empty($employee->position_title->formations)): ?>
         <table cellpadding="0" cellspacing="0">
           <tr>
               <th scope="col"><?= __('title') ?></th>
               <th scope="col"><?= __('Category') ?></th>
+              <th scope="col"><?= __('lastTimeCompleted') ?></th>
               <th scope="col" class="actions"><?= __('Actions') ?></th>
           </tr>
-          <?php foreach ($employee->position_title->formations as $formations): ?>
-          <tr>
-              <td><?= h($formations->title) ?></td>
-              <td><?= h($formations->category->title) ?></td>
-              <td class="actions">
-                  <?= $this->Html->link(__('View'), ['controller' => 'Formations', 'action' => 'view', $formations->id]) ?>
-                  <?= $this->Html->link(__('Edit'), ['controller' => 'Formations', 'action' => 'edit', $formations->id]) ?>
-              </td>
-          </tr>
+
+          <?php foreach ($employee->position_title->formations as $index => $formations): ?>
+
+                <?php
+                $date = null;
+                    foreach($formationComplete as $FC):
+                        if($FC->formation_id == $formations->id){
+                            $formationC = $FC;
+                        }
+                    endforeach;
+                ?>
+                <tr>
+                    <td><?= h($formations->title) ?></td>
+                    <td><?= h($formations->category->title) ?></td>
+                    <td><?= ($formationC->lastTime_completed) ?>
+                        <?= ($this->Html->link(__('Edit lastTime_completed'), ['controller' => 'formationCompletes', 'action' => 'edit', $formationC->id])) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('View'), ['controller' => 'Formations', 'action' => 'view', $formations->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['controller' => 'Formations', 'action' => 'edit', $formations->id]) ?>
+                    </td>
+                </tr>
+
           <?php endforeach; ?>
-        </table>
-
-        <h5><?= __('Formations status') ?></h5>
-
-        <table cellpadding="0" cellspacing="0">
-              <tr>
-                  <th scope="col"><?= __('title') ?></th>
-                  <th scope="col"><?= __('status') ?></th>
-                  <th scope="col" class="actions"><?= __('Actions') ?></th>
-              </tr>
-              <?php $compteur = 0; ?>
-              <?php foreach($formationComplete as $formationComplete): ?>
-                    <?php
-                        $frequency = $employee->position_title->formations[$compteur]->frequency->title;
-                        $frequence = new Time($frequency);
-                        $lastTimeCompleted = new Time($formationComplete->lastTime_completed);
-                        if($lastTimeCompleted->wasWithinLast($frequency)){
-                            $Completed = true;
-                        }else{
-                            $Completed = false;
-                        }?>
-                    <tr>
-                        <td><?= ($employee->position_title->formations[$compteur]->title) ?></td>
-                        <td>
-                        <?php if($Completed == true){
-                            echo __('completé');
-                        } else {
-                            echo __('Non complété');
-                        } ?>
-                        </td>
-                        <td>
-                            <?= $this->Html->link(__('Edit'), ['controller' => 'formationCompletes', 'action' => 'edit', $formationComplete->id]) ?>
-                        </td>
-                    </tr>
-                    <?php $compteur = $compteur + 1; ?>
-              <?php endforeach; ?>
         </table>
         <?php endif; ?>
     </div>
 
-    <?php foreach($formationComplete as $formationComplete): ?>
+    <?php /*foreach($formationComplete as $formationComplete): ?>
       <?= ($formationComplete->id) ?>
-    <?php endforeach; ?>
+    <?php endforeach; */?>
 
 
 </div>
