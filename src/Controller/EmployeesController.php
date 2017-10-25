@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Dompdf\Dompdf;
-
 use Cake\Mailer\Email;
 
 /**
@@ -154,42 +153,57 @@ class EmployeesController extends AppController {
         return $this->redirect(['action' => 'index']);
     }
 
-    public function sendFormationPlan($id = null) {
+    public function sendFormationPlan($id = null, $action) {
         $employee = $this->Employees->get($id, [
-            'contain' => []
+            'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees',
+                'ChildEmployees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings']]
         ]);
+        $this->nouvelleMethode($employee);
+        if ($action == 'login') {
+            return $this->redirect(
+                            ['controller' => 'User', 'action' => 'login']
+            );
+        } else if ($action == 'index') {
+            $this->setAction($action);
+        } else {
+            return $this->redirect(
+                            ['action' => 'view', $id]
+            );
+        }
+    }
+
+    public function nouvelleMethode($employee) {
         $curr_timestamp = date('Y-m-d H:i:s');
         $emailEmp = $employee->email;
 
 
         ob_start();
-        include "/cake/src/Template/Employees/TemplateFormationPlan/formation_plan.php";
+        include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan.php";
         $html = ob_get_clean();
         ob_end_clean();
 
-        // instantiate and use the dompdf class
+// instantiate and use the dompdf class
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
 
-        // (Optional) Setup the paper size and orientation
+// (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'portrait');
 
-        // Render the HTML as PDF
+// Render the HTML as PDF
         $dompdf->render();
 
-        // Output the generated PDF to Browser
+// Output the generated PDF to Browser
         $pdf_gen = $dompdf->output();
         if (file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
             $email = new Email('default');
             $email->to($emailEmp)
                     ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
-                    ->subject("Formation plan of ".$curr_timestamp)
+                    ->subject("Formation plan of " . $curr_timestamp)
                     ->send("Formation plan");
             $employee->last_sent_formation_plan = $curr_timestamp;
             $this->Employees->save($employee);
             $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
         }
-        $this->setAction('index');
     }
 
 }

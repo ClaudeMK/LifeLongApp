@@ -116,3 +116,483 @@ Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line
 
 
 
+2017-10-24 19:49:07 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:49:07 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:49:07 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:52:17 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:52:17 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:52:17 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:52:33 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:52:33 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:52:33 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:21 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:21 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:21 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:25 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:25 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:25 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/Program Files (x86)/Ampps/www/LifeLongApp/vendor/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - ROOT\vendor\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:29 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:29 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:29 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:39 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:39 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:54:39 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:58:17 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\Test in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 7]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 7
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:58:17 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\AssertionFailedError in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 8]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 8
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
+2017-10-24 19:58:17 Warning: Warning (2): Cannot redeclare class PHPUnit\Framework\TestSuite in [C:\Program Files (x86)\Ampps\www\LifeLongApp\vendor\cakephp\cakephp\tests\phpunit_aliases.php, line 9]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 153
+class_alias - [internal], line ??
+require_once - CORE\tests\phpunit_aliases.php, line 9
+loadPHPUnitAliases - CORE\src\basics.php, line 155
+include - CORE\src\TestSuite\Fixture\FixtureManager.php, line 17
+Composer\Autoload\includeFile - ROOT\vendor\composer\ClassLoader.php, line 444
+Composer\Autoload\ClassLoader::loadClass() - ROOT\vendor\composer\ClassLoader.php, line 322
+spl_autoload_call - [internal], line ??
+PHPUnit_Util_XML::xmlToVariable() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/XML.php, line 227
+PHPUnit_Util_Configuration::getListenerConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/Util/Configuration.php, line 331
+PHPUnit_TextUI_TestRunner::handleConfiguration() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 925
+PHPUnit_TextUI_TestRunner::doRun() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/TestRunner.php, line 163
+PHPUnit_TextUI_Command::run() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 186
+PHPUnit_TextUI_Command::main() - phar://C:/bin/phpunit-5.7.23.phar/phpunit/TextUI/Command.php, line 116
+[main] - C:\bin\phpunit-5.7.23.phar, line 592
+
+
+
