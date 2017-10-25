@@ -9276,3 +9276,35 @@ Stack Trace:
 #25 {main}
 
 
+2017-10-25 12:51:28 Error: [CakeCaptcha\Controller\Exception\InvalidArgumentException] The "ExampleCaptcha" option could not be found in config/captcha.php file.
+Request URL: /
+Referer URL: http://localhost/LifeLongApp/
+Stack Trace:
+#0 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Controller\Component.php(133): CakeCaptcha\Controller\Component\CaptchaComponent->initialize(Array)
+#1 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Controller\ComponentRegistry.php(118): Cake\Controller\Component->__construct(Object(Cake\Controller\ComponentRegistry), Array)
+#2 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Core\ObjectRegistry.php(93): Cake\Controller\ComponentRegistry->_create('CakeCaptcha\\Con...', 'Captcha', Array)
+#3 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Controller\Controller.php(322): Cake\Core\ObjectRegistry->load('CakeCaptcha.Cap...', Array)
+#4 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\src\Controller\AppController.php(51): Cake\Controller\Controller->loadComponent('CakeCaptcha.Cap...', Array)
+#5 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\src\Controller\EmployeesController.php(19): App\Controller\AppController->initialize()
+#6 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Controller\Controller.php(262): App\Controller\EmployeesController->initialize()
+#7 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\src\Controller\UsersController.php(152): Cake\Controller\Controller->__construct()
+#8 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\src\Controller\UsersController.php(128): App\Controller\UsersController->sendFormationPlan('youcef.guerni@g...')
+#9 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Controller\Controller.php(440): App\Controller\UsersController->login()
+#10 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(119): Cake\Controller\Controller->invokeAction()
+#11 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\ActionDispatcher.php(93): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\UsersController))
+#12 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#16 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#18 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#19 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#20 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php(52): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#21 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\Runner.php(65): DebugKit\Middleware\DebugKitMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#22 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#23 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\vendor\cakephp\cakephp\src\Http\Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#24 C:\EasyPHP-Devserver-17\eds-www\LifeLongApp\webroot\index.php(37): Cake\Http\Server->run()
+#25 {main}
+
+

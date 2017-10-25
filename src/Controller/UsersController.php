@@ -149,7 +149,6 @@ class UsersController extends AppController {
 
         if ($employee->last_sent_formation_plan == null || !$employee->last_sent_formation_plan->wasWithinLast('24 hours')) {
             if ($employee != null) {
-
                 ob_start();
                 include "C:/Program Files (x86)/Ampps/www/LifeLong_App/src/Template/Employees/TemplateFormationPlan/formation_plan.php";
                 $html = ob_get_clean();

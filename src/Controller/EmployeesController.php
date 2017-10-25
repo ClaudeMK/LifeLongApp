@@ -159,11 +159,7 @@ class EmployeesController extends AppController {
                 'ChildEmployees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings']]
         ]);
         $this->nouvelleMethode($employee);
-        if ($action == 'login') {
-            return $this->redirect(
-                            ['controller' => 'User', 'action' => 'login']
-            );
-        } else if ($action == 'index') {
+        if ($action == 'index') {
             $this->setAction($action);
         } else {
             return $this->redirect(
