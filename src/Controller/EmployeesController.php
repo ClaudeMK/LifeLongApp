@@ -138,6 +138,7 @@ class EmployeesController extends AppController {
         $formationComplete = $this->FormationCompletes->find('all')
           ->where(['FormationCompletes.employee_id = ' => $employee->id]);
 
+        $formationComplete = $formationComplete->toArray();
 
 
         $this->set(compact('employee', 'civilities', 'languages', 'positionTitles', 'buildings', 'parentEmployees', 'formationComplete'));
