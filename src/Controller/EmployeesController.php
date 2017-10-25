@@ -25,6 +25,7 @@ class EmployeesController extends AppController {
             // the PRG component work only for specified methods.
             'actions' => ['index', 'lookup']
         ]);
+
     }
 
     /**
