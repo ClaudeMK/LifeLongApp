@@ -61,8 +61,7 @@ class FormationCompletesTable extends Table
 
         $validator
             ->date('lastTime_completed')
-            ->requirePresence('lastTime_completed', 'create')
-            ->notEmpty('lastTime_completed');
+            ->allowEmpty('lastTime_completed');
 
         $validator
             ->allowEmpty('comment');

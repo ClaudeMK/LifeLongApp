@@ -23,9 +23,9 @@
     <?= $this->Form->create($formationComplete) ?>
     <fieldset>
         <legend><?= __('Edit Formation Complete') ?></legend>
+        <h5> <?= ('Formation : ' . $formations->title) ?> </h5>
+        <h5> <?= ('Employee : ' . $employees->first_name) ?> </h5>
         <?php
-            echo $this->Form->control('employee_id', ['options' => $employees]);
-            echo $this->Form->control('formation_id', ['options' => $formations]);
             echo $this->Form->control('lastTime_completed');
             echo $this->Form->control('comment');
         ?>

@@ -90,8 +90,13 @@ class FormationCompletesController extends AppController
             }
             $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
         }
-        $employees = $this->FormationCompletes->Employees->find('list', ['limit' => 200]);
-        $formations = $this->FormationCompletes->Formations->find('list', ['limit' => 200]);
+
+        $this->loadModel('Formations');
+        $this->loadModel('Employees');
+
+        $employees = $this->Employees->get($formationComplete->employee_id);
+        $formations = $this->Formations->get($formationComplete->formation_id);
+
         $this->set(compact('formationComplete', 'employees', 'formations'));
         $this->set('_serialize', ['formationComplete']);
     }

@@ -55,7 +55,7 @@
               <td><?= h($formations->category->title) ?></td>
               <td class="actions">
                   <?= $this->Html->link(__('View'), ['controller' => 'Formations', 'action' => 'view', $formations->id]) ?>
-                  <?= $this->Html->link(__('Edit'), ['controller' => 'Formations', 'action' => 'edit', $formations->id, 'class' => 'button']) ?>
+                  <?= $this->Html->link(__('Edit'), ['controller' => 'Formations', 'action' => 'edit', $formations->id]) ?>
               </td>
           </tr>
           <?php endforeach; ?>
@@ -64,34 +64,38 @@
         <h5><?= __('Formations status') ?></h5>
 
         <table cellpadding="0" cellspacing="0">
-          <tr>
-              <th scope="col"><?= __('title') ?></th>
-              <th scope="col"><?= __('status') ?></th>
-              <th scope="col" class="actions"><?= __('Actions') ?></th>
-          </tr>
-          <?php $compteur = 0; ?>
-          <?php foreach($formationComplete as $formationComplete): ?>
-            <?php
-                  $frequency = $employee->position_title->formations[$compteur]->frequency->title;
-                  $frequence = new Time($frequency);
-                  $lastTimeCompleted = new Time($formationComplete->lastTime_completed);
-                  if($lastTimeCompleted->wasWithinLast($frequency)){
-                    $Completed = true;
-                  }else{
-                    $Completed = false;
-                  }?>
-            <tr>
-              <td><?= ($employee->position_title->formations[$compteur]->title) ?></td>
-              <td> <?php if($Completed == true){
-                echo('completer');
-              } else {
-                echo('pas completer');
-              } ?> </td>
-            </tr>
-            <?php $compteur = $compteur + 1; ?>
-          <?php endforeach; ?>
+              <tr>
+                  <th scope="col"><?= __('title') ?></th>
+                  <th scope="col"><?= __('status') ?></th>
+                  <th scope="col" class="actions"><?= __('Actions') ?></th>
+              </tr>
+              <?php $compteur = 0; ?>
+              <?php foreach($formationComplete as $formationComplete): ?>
+                    <?php
+                        $frequency = $employee->position_title->formations[$compteur]->frequency->title;
+                        $frequence = new Time($frequency);
+                        $lastTimeCompleted = new Time($formationComplete->lastTime_completed);
+                        if($lastTimeCompleted->wasWithinLast($frequency)){
+                            $Completed = true;
+                        }else{
+                            $Completed = false;
+                        }?>
+                    <tr>
+                        <td><?= ($employee->position_title->formations[$compteur]->title) ?></td>
+                        <td>
+                        <?php if($Completed == true){
+                            echo __('completé');
+                        } else {
+                            echo __('Non complété');
+                        } ?>
+                        </td>
+                        <td>
+                            <?= $this->Html->link(__('Edit'), ['controller' => 'formationCompletes', 'action' => 'edit', $formationComplete->id]) ?>
+                        </td>
+                    </tr>
+                    <?php $compteur = $compteur + 1; ?>
+              <?php endforeach; ?>
         </table>
-
         <?php endif; ?>
     </div>
 
