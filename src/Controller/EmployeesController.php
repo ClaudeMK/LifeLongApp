@@ -174,7 +174,7 @@ class EmployeesController extends AppController {
             $this->setAction($action);
         } else {
             return $this->redirect(
-                            ['action' => 'view', $id]
+                            ['action' => 'edit', $id]
             );
         }
     }
@@ -182,10 +182,13 @@ class EmployeesController extends AppController {
     public function nouvelleMethode($employee) {
         $curr_timestamp = date('Y-m-d H:i:s');
         $emailEmp = $employee->email;
-
-
+        $lang = $employee->language_id;
         ob_start();
-        include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan.php";
+        if ($lang == 1){
+            include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
+        }else{
+            include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
+        }
         $html = ob_get_clean();
         ob_end_clean();
 
@@ -201,10 +204,10 @@ class EmployeesController extends AppController {
 
 // Output the generated PDF to Browser
         $pdf_gen = $dompdf->output();
-        if (file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
+        if (file_put_contents('C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
             $email = new Email('default');
             $email->to($emailEmp)
-                    ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
+                    ->setAttachments(['formationPlan.pdf' => 'C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
                     ->subject("Formation plan of " . $curr_timestamp)
                     ->send("Formation plan");
             $employee->last_sent_formation_plan = $curr_timestamp;

@@ -14,12 +14,6 @@
 </nav>
 <div class="employees view large-10 medium-9 columns content">
     <h3><?= h($employee->id) ?></h3>
-    <div style="float: right">
-        <?= $this->Html->link(__('Send formation plan'), ['action' => 'sendFormationPlan', $employee->id, 'view']) ?>
-        <br/>
-        <br/>
-    </div>
-    
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Number') ?></th>

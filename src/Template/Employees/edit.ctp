@@ -7,6 +7,7 @@
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Send formation plan'), ['action' => 'sendFormationPlan', $employee->id, 'edit']) ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $employee->id],
@@ -14,6 +15,7 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?></li>
+        
     </ul>
 </nav>
 <div class="employees form large-10 medium-9 columns content">
