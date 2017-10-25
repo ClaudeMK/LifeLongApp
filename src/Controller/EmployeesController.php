@@ -163,7 +163,7 @@ class EmployeesController extends AppController {
             $this->setAction($action);
         } else {
             return $this->redirect(
-                            ['action' => 'view', $id]
+                            ['action' => 'edit', $id]
             );
         }
     }

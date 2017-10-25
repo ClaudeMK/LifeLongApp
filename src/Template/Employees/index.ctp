@@ -74,7 +74,7 @@ $loguser = $this->request->session()->read('Auth.User');
                 </td>
                 <td><?= h($employee->last_sent_formation_plan) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
+                    <!--<?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>-->
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $employee->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer # {0}?', $employee->id)]) ?>
                     <?= $this->Html->link(__('Send'), ['action' => 'sendFormationPlan', $employee->id, 'index']) ?>
