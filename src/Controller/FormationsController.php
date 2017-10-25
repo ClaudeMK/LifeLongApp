@@ -12,7 +12,7 @@ use App\Controller\AppController;
  */
 class FormationsController extends AppController
 {
-    
+
     public function initialize() {
         parent::initialize();
 
@@ -31,7 +31,7 @@ class FormationsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Categories', 'Frequencies', 'Modalities', 'Notifications'],
+            'contain' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles'],
             'limit' => 10
         ];
         $query = $this->Formations
@@ -51,7 +51,7 @@ class FormationsController extends AppController
     public function view($id = null)
     {
         $formation = $this->Formations->get($id, [
-            'contain' => ['Categories', 'Frequencies', 'Modalities', 'Notifications']
+            'contain' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']
         ]);
 
         $this->set('formation', $formation);
@@ -81,7 +81,8 @@ class FormationsController extends AppController
         $frequencies = $this->Formations->Frequencies->find('list', ['limit' => 200]);
         $notifications = $this->Formations->Notifications->find('list', ['limit' => 200]);
         $modalities = $this->Formations->Modalities->find('list', ['limit' => 200]);
-        $this->set(compact('formation', 'categories', 'frequencies', 'modalities', 'notifications'));
+        $positionsTitles = $this->Formations->PositionTitles->find('list', ['limit' => 200]);
+        $this->set(compact('formation', 'categories', 'frequencies', 'modalities', 'notifications', 'positionsTitles'));
         $this->set('_serialize', ['formation']);
     }
 
@@ -112,7 +113,8 @@ class FormationsController extends AppController
         $frequencies = $this->Formations->Frequencies->find('list', ['limit' => 200]);
         $notifications = $this->Formations->Notifications->find('list', ['limit' => 200]);
         $modalities = $this->Formations->Modalities->find('list', ['limit' => 200]);
-        $this->set(compact('formation', 'categories', 'frequencies', 'modalities', 'notifications'));
+        $positionsTitles = $this->Formations->PositionTitles->find('list', ['limit' => 200]);
+        $this->set(compact('formation', 'categories', 'frequencies', 'modalities', 'notifications', 'positionsTitles'));
         $this->set('_serialize', ['formation']);
     }
 

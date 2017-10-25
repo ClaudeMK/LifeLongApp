@@ -53,13 +53,13 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Supervisor') ?></th>
-            
+
             <td>
                 <?php if($employee->parent_id !== 0){?>
                 <?= h($employee->parent_employee->first_name . ' ' . $employee->parent_employee->last_name) ?>
                 <?php } ?>
             </td>
-            
+
         </tr>
         <tr>
             <th scope="row"><?= __('Additional Infos') ?></th>
@@ -106,5 +106,42 @@
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
+    </div>
+
+    <div class="related">
+      <h4><?= __('Related Formations') ?></h4>
+
+      <?php if(!empty($employee->position_title->formations)): ?>
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+              <th scope="col"><?= __('Number') ?></th>
+              <th scope="col"><?= __('title') ?></th>
+              <th scope="col"><?= __('Category') ?></th>
+              <th scope="col"><?= __('Notification') ?></th>
+              <th scope="col"><?= __('Modality') ?></th>
+              <th scope="col"><?= __('Duration') ?></th>
+              <th scope="col"><?= __('Note') ?></th>
+              <th scope="col" class="actions"><?= __('Actions') ?></th>
+          </tr>
+          <?php foreach ($employee->position_title->formations as $formations): ?>
+          <tr>
+              <td><?= h($formations->number) ?></td>
+              <td><?= h($formations->title) ?></td>
+              <td><?= h($formations->category->title) ?></td>
+              <td><?= h($formations->notification->title) ?></td>
+              <td><?= h($formations->modality->title) ?></td>
+              <td><?= h($formations->duration) ?></td>
+              <td><?= h($formations->note) ?></td>
+              <td class="actions">
+                  <?= $this->Html->link(__('View'), ['controller' => 'Formations', 'action' => 'view', $formations->id]) ?>
+                  <?= $this->Html->link(__('Edit'), ['controller' => 'Formations', 'action' => 'edit', $formations->id]) ?>
+                  <?= $this->Form->postLink(__('Delete'), ['controller' => 'Formations', 'action' => 'delete', $formations->id], ['confirm' => __('Are you sure you want to delete # {0}?', $formations->id)]) ?>
+              </td>
+          </tr>
+          <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+
+
     </div>
 </div>

@@ -13,23 +13,23 @@ use App\Controller\AppController;
 class EmployeesController extends AppController
 {
 
-    
+
     public function initialize()
     {
         parent::initialize();
-        
+
         $this->loadComponent('Search.Prg', [
             // This is default config. You can modify "actions" as needed to make
             // the PRG component work only for specified methods.
             'actions' => ['index', 'lookup']
         ]);
-        
-        
+
+
     }
-    
-    
-    
-    
+
+
+
+
     /**
      * Index method
      *
@@ -45,7 +45,7 @@ class EmployeesController extends AppController
 
         //$this->set(compact('employees'));
         //$this->set('_serialize', ['employees']);
-        
+
         $query = $this->Employees
         // Use the plugins 'search' custom finder and pass in the
         // processed query params
@@ -64,11 +64,11 @@ class EmployeesController extends AppController
     public function view($id = null)
     {
         $employee = $this->Employees->get($id, [
-            'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees', 
+            'contain' => ['Civilities', 'Languages', 'PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']], 'Buildings', 'ParentEmployees',
                 'ChildEmployees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings']]
         ]);
 
-        
+
         $this->set('employee', $employee);
         $this->set('_serialize', ['employee']);
     }
@@ -116,7 +116,7 @@ class EmployeesController extends AppController
     public function edit($id = null)
     {
         $employee = $this->Employees->get($id, [
-            'contain' => []
+            'contain' => ['PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]]
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
@@ -140,7 +140,14 @@ class EmployeesController extends AppController
         $positionTitles = $this->Employees->PositionTitles->find('list', ['limit' => 200]);
         $buildings = $this->Employees->Buildings->find('list', ['limit' => 200]);
         $parentEmployees = $this->Employees->ParentEmployees->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'civilities', 'languages', 'positionTitles', 'buildings', 'parentEmployees'));
+
+        $this->loadModel('FormationCompletes');
+        $formationComplete = $this->FormationCompletes->find('all')
+          ->where(['FormationCompletes.employee_id = ' => $employee->id]);
+
+
+
+        $this->set(compact('employee', 'civilities', 'languages', 'positionTitles', 'buildings', 'parentEmployees', 'formationComplete'));
         $this->set('_serialize', ['employee']);
     }
 

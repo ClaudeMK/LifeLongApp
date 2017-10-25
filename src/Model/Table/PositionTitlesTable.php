@@ -39,6 +39,11 @@ class PositionTitlesTable extends Table
         $this->hasMany('Employees', [
             'foreignKey' => 'position_title_id'
         ]);
+        $this->belongsToMany('Formations', [
+            'foreignKey' => 'position_title_id',
+            'targetForeignKey' => 'formation_id',
+            'joinTable' => 'formations_positionTitles'
+        ]);
     }
 
     /**
