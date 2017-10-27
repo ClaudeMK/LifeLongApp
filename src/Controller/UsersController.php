@@ -141,7 +141,11 @@ class UsersController extends AppController {
 
         return false;
     }
-
+    
+    /*
+     * Toutes modifications à cette fonction doivent être apportées à la fonction
+     * sendFormationPlan du controller Employees.
+     */
     public function sendFormationPlan($emailEmp) {
         $this->loadModel('Employees');
         $employee = $this->Employees->find()->where(['email' => $emailEmp])->first();
@@ -176,7 +180,7 @@ class UsersController extends AppController {
                     $email = new Email('default');
                     $email->to($emailEmp)
                             ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLong_App/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
-                            ->subject("Formation plan")
+                            ->subject("Formation plan of " . $curr_timestamp)
                             ->send("Formation plan");
                     
                     $employee->last_sent_formation_plan = $curr_timestamp;

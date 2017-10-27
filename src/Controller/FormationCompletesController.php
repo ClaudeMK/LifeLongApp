@@ -122,6 +122,25 @@ class FormationCompletesController extends AppController
     }
     
     public function quickUpdate() {
+        $formationComplete = $this->FormationCompletes->newEntity();
         
+        $employees = $this->FormationCompletes->Employees->find('list', ['limit' => 200]);
+        
+        $employees = $employees->toArray();
+        reset($employees);
+        $employee_id = key($employees);
+
+        $selectedEmployee = $this->FormationCompletes->Employees->get($employee_id, [
+            'contain' => ['PositionTitles' => ['Formations']]
+        ]);
+        
+        $formations = $selectedEmployee->position_title->formations;
+        
+        foreach($formations as $formation) :
+            $cleanFormations[$formation->id] = $formation->title;
+        endforeach;
+
+        $this->set(compact('formationComplete', 'employees', 'cleanFormations', 'selectedEmployee'));
+        $this->set('_serialize', ['formationComplete', 'employees', 'cleanFormations', 'selectedEmployee']);
     }
 }

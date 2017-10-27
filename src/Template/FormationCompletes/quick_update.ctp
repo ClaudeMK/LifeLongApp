@@ -28,6 +28,13 @@ $loguser = $this->request->session()->read('Auth.User');
     </ul>
 </nav>
 <div class="large-10 medium-9 columns content">
-    
-    
+    <h3><?= __('Quick Update') ?></h3>
+    <?php $this->Html->script('quickUpdate', ['block' => true]); ?>
+    <form>
+    <?php
+        echo $this->Form->input('Employees', ['options' => $employees]);
+        echo $this->Form->input('Formations', ['options'  => $cleanFormations]);
+        echo $this->form->control('lastTime_completed')
+    ?>
+    </form>
 </div>

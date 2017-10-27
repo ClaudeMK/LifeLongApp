@@ -164,6 +164,10 @@ class EmployeesController extends AppController {
         return $this->redirect(['action' => 'index']);
     }
 
+    /*
+     * Toutes modifications à cette fonction doivent être apportées à la fonction
+     * sendFormationPlan du controller Users.
+     */
     public function sendFormationPlan($id = null, $action) {
         $employee = $this->Employees->get($id, [
             'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees',
@@ -192,17 +196,17 @@ class EmployeesController extends AppController {
         $html = ob_get_clean();
         ob_end_clean();
 
-// instantiate and use the dompdf class
+        // instantiate and use the dompdf class
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
 
-// (Optional) Setup the paper size and orientation
+        // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'portrait');
 
-// Render the HTML as PDF
+        // Render the HTML as PDF
         $dompdf->render();
 
-// Output the generated PDF to Browser
+        // Output the generated PDF to Browser
         $pdf_gen = $dompdf->output();
         if (file_put_contents('C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
             $email = new Email('default');
