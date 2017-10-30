@@ -46,6 +46,13 @@ class AttachmentsController extends AppController
         $this->set('_serialize', ['attachment']);
     }
 
+    public function download($name){
+        $filePath = WWW_ROOT .'img' . DS . 'Files' . DS . $name;
+        $this->Flash->success($filePath);
+        $response = $this->response->withFile($filePath);
+        return $response;
+    }
+
     /**
      * Add method
      *

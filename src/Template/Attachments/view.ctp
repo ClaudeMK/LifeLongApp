@@ -24,7 +24,8 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($attachment->name) ?></td>
+            <td> <?= $this->Html->link($attachment->name, ['controller' => 'Attachments', 'action' => 'download', $attachment->name])?>
+                </td>
         </tr>
         <tr>
             <th scope="row"><?= __('Path') ?></th>
