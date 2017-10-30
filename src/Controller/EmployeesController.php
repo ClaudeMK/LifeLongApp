@@ -92,7 +92,7 @@ class EmployeesController extends AppController
             }
             if ($this->Employees->save($employee)) {
                 $this->Flash->success(__('The employee has been saved.'));
-
+                $this->addAllFormationComplete($employee->id);
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
@@ -164,12 +164,39 @@ class EmployeesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $employee = $this->Employees->get($id);
         if ($this->Employees->delete($employee)) {
+            $this->loadModel('FormationCompletes');
+            $this->FormationCompletes->deleteAll([
+                'employee_id' => $id
+            ]);
             $this->Flash->success(__('The employee has been deleted.'));
         } else {
             $this->Flash->error(__('The employee could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function addAllFormationComplete($id = null){
+        $employee = $this->Employees->get($id, [
+            'contain' => ['PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]]
+        ]);
+
+        $this->loadModel('FormationsPositionTitles');
+        $FormationsPositionTitles = $this->FormationsPositionTitles->find('all')
+          ->where(['FormationsPositionTitles.position_title_id = ' => $employee->position_title->id]);
+
+        $FormationsPositionTitles = $FormationsPositionTitles->toArray();
+
+        if(!empty($FormationsPositionTitles)){
+            $this->loadModel('FormationCompletes');
+            foreach($FormationsPositionTitles as $FormationsPositionTitle){
+
+                $formationComplete = $this->FormationCompletes->newEntity();
+                $formationComplete->employee_id = $employee->id;
+                $formationComplete->formation_id = $FormationsPositionTitle->formation_id;
+                $this->FormationCompletes->save($formationComplete);
+            }
+        }
     }
 
     public function sendFormationPlanHomePage($email) {
