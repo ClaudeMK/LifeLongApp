@@ -58,9 +58,9 @@
                 <td><?= h($attachments->created) ?></td>
                 <td><?= h($attachments->modified) ?></td>
                 <td class="actions">
-                        <?= $this->Html->link(__('View'), ['controller' => 'Files', 'action' => 'view', $attachments->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['controller' => 'Files', 'action' => 'edit', $attachments->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Files', 'action' => 'delete', $attachments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $attachments->id)]) ?>
+                        <?= $this->Html->link(__('View'), ['controller' => 'Attachments', 'action' => 'view', $attachments->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['controller' => 'Attachments', 'action' => 'edit', $attachments->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Attachments', 'action' => 'delete', $attachments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $attachments->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
