@@ -1,4 +1,13 @@
 <?php
+    $urlToLinkedListFilter = $this->Url->build([
+        "controller" => "FormationCompletes",
+        "action" => "getFormations",
+        "_ext" => "json"
+            ]);
+    echo $this->Html->scriptBlock('var urlToLinkedListFilter = "' . $urlToLinkedListFilter . '";', ['block' => true]);
+    echo $this->Html->script('quickUpdate');
+?>
+<?php
 /**
   * @var \App\View\AppView $this
   * @var \App\Model\Entity\Employee[]|\Cake\Collection\CollectionInterface $employees
@@ -27,14 +36,22 @@ $loguser = $this->request->session()->read('Auth.User');
         <li><?= '<li>'.$this->Html->link(__('Quick Update'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdate']).'</li>'; ?></li>
     </ul>
 </nav>
-<div class="large-10 medium-9 columns content">
+<div class="formationCompletes form large-9 medium-8 columns content">
+    <?= $this->Form->create($formationComplete) ?>
     <h3><?= __('Quick Update') ?></h3>
     <?php $this->Html->script('quickUpdate', ['block' => true]); ?>
-    <form>
     <?php
-        echo $this->Form->input('Employees', ['options' => $employees]);
-        echo $this->Form->input('Formations', ['options'  => $cleanFormations]);
-        echo $this->form->control('lastTime_completed')
+        echo $this->Form->control('employee_id', ['default' => $selectedEmployee->id]);
+        echo $this->Form->control('formation_id', ['options'  => $cleanFormations]);
+        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker']);     
     ?>
-    </form>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
 </div>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+        dateFormat: "m/d/y"
+    });
+  } );
+  </script>

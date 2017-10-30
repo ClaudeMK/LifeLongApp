@@ -121,26 +121,86 @@ class FormationCompletesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    public function quickUpdate() {
-        $formationComplete = $this->FormationCompletes->newEntity();
-        
+    public function quickUpdate($employee_id = null) {
         $employees = $this->FormationCompletes->Employees->find('list', ['limit' => 200]);
         
-        $employees = $employees->toArray();
-        reset($employees);
-        $employee_id = key($employees);
+        if($employee_id == null) {
+            $employees = $employees->toArray();
+            reset($employees);
+            $employee_id = key($employees);
+        }
 
         $selectedEmployee = $this->FormationCompletes->Employees->get($employee_id, [
             'contain' => ['PositionTitles' => ['Formations']]
         ]);
         
-        $formations = $selectedEmployee->position_title->formations;
+        $selectedPositionTitle = $selectedEmployee->position_title;
+ 
+        $formations = $selectedPositionTitle->formations;
         
         foreach($formations as $formation) :
             $cleanFormations[$formation->id] = $formation->title;
         endforeach;
 
+        reset($cleanFormations);
+        $formation_id = key($cleanFormations);
+        
+        $formationComplete = $this->getFormationsCompletesDatesFiles($employee_id, $formation_id);
+        
+        if($this->request->is(['patch', 'post', 'put'])) {
+            $formationComplete = $this->getFormationsCompletesDatesFiles(
+                    $this->request->data['employee_id'], $this->request->data['formation_id']);
+            
+            $timeToConvert = strtotime($this->request->data['lastTime_completed']);
+            $formationComplete->lastTime_completed = date('Y-m-d', $timeToConvert);
+            
+            if ($this->FormationCompletes->save($formationComplete)) {
+                $this->Flash->success(__('The formation complete has been saved.'));
+                
+                return $this->redirect(['controller' => 'FormationCompletes','action' => 'quickUpdate', $formationComplete->employee_id]);
+            } else {
+                $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
+            }
+        }
+        
         $this->set(compact('formationComplete', 'employees', 'cleanFormations', 'selectedEmployee'));
         $this->set('_serialize', ['formationComplete', 'employees', 'cleanFormations', 'selectedEmployee']);
     }
+    
+    public function getFormations() {
+        $employee_id = $this->request->query('employee_id');
+        
+        $selectedEmployee = $this->FormationCompletes->Employees->get($employee_id, [
+            'contain' => ['PositionTitles' => ['Formations']]
+        ]);
+        $selectedPositionTitle = $selectedEmployee->position_title;
+        
+        $formations = $selectedPositionTitle->formations;
+        
+        foreach($formations as $formation) :
+            $cleanFormations[$formation->id] = $formation->title;
+        endforeach;
+        
+        reset($cleanFormations);
+        $formation_id = key($cleanFormations);
+        
+        $formationComplete = $this->getFormationsCompletesDatesFiles($employee_id, $formation_id);
+
+        $this->set('formations', $cleanFormations);
+    }
+    
+    public function getFormationsCompletesDatesFiles($employee_id, $formation_id) {
+        $currentFormation = $this->FormationCompletes->find()
+                ->where(['employee_id' => $employee_id, 'formation_id' => $formation_id])
+                ->first();
+
+        $id = $currentFormation->id;
+        
+        $formationComplete = $this->FormationCompletes->get($id, [
+                'contain' => []
+            ]);
+                         
+        return $formationComplete;      
+    }
+    
 }
