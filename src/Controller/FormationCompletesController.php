@@ -39,7 +39,7 @@ class FormationCompletesController extends AppController
     public function view($id = null)
     {
         $formationComplete = $this->FormationCompletes->get($id, [
-            'contain' => ['Employees', 'Formations']
+            'contain' => ['Employees', 'Formations', 'Attachments']
         ]);
 
         $this->set('formationComplete', $formationComplete);
