@@ -191,13 +191,6 @@ class EmployeesController extends AppController {
         }
     }
 
-    public function sendFormationPlanHomePage($email) {
-        $sendOK = false;
-
-        die($email);
-
-
-        return $sendOK;
     /*
      * Toutes modifications à cette fonction doivent être apportées à la fonction
      * sendFormationPlan du controller Users.
