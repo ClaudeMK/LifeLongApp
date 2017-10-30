@@ -41,4 +41,30 @@
             <td><?= h($formationComplete->lastTime_completed) ?></td>
         </tr>
     </table>
+
+    <div class="related">
+        <h4><?= __('Related Attachments') ?></h4>
+        <?php if (!empty($formationComplete->attachments)): ?>
+        <table class="table table-striped table-hover ">
+            <tr>
+                <th scope="col"><?= __('Name') ?></th>
+                <th scope="col"><?= __('Created') ?></th>
+                <th scope="col"><?= __('Modified') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($formationComplete->attachments as $attachments): ?>
+            <tr>
+                <td><?= h($attachments->name) ?></td>
+                <td><?= h($attachments->created) ?></td>
+                <td><?= h($attachments->modified) ?></td>
+                <td class="actions">
+                        <?= $this->Html->link(__('View'), ['controller' => 'Files', 'action' => 'view', $attachments->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['controller' => 'Files', 'action' => 'edit', $attachments->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['controller' => 'Files', 'action' => 'delete', $attachments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $attachments->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
 </div>

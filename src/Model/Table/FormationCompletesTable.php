@@ -45,6 +45,9 @@ class FormationCompletesTable extends Table
             'foreignKey' => 'formation_id',
             'joinType' => 'INNER'
         ]);
+        $this->hasMany('Attachments', [
+            'foreignKey' => 'formation_complete_id'
+        ]);
     }
 
     /**
