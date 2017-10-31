@@ -34,7 +34,7 @@ class FormationCompletesTable extends Table
         parent::initialize($config);
 
         $this->setTable('formation_completes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('lastTime_completed');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Employees', [
@@ -44,6 +44,9 @@ class FormationCompletesTable extends Table
         $this->belongsTo('Formations', [
             'foreignKey' => 'formation_id',
             'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Attachments', [
+            'foreignKey' => 'formation_complete_id'
         ]);
     }
 

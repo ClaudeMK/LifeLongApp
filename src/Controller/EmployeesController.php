@@ -79,13 +79,16 @@ class EmployeesController extends AppController {
             $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
             
             $data = $employee->cell_number;
+            if($employee->parent_id == null) {
+                $employee->parent_id = 1;
+            }
             if (is_numeric($data) && strlen($data) == 10) {
 
                 $employee->cell_number = $this->editPhoneDots($data);
             }
             if ($this->Employees->save($employee)) {
                 $this->Flash->success(__('The employee has been saved.'));
-
+                $this->addAllFormationComplete($employee->id);
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
@@ -165,6 +168,10 @@ class EmployeesController extends AppController {
         $this->request->allowMethod(['post', 'delete']);
         $employee = $this->Employees->get($id);
         if ($this->Employees->delete($employee)) {
+            $this->loadModel('FormationCompletes');
+            $this->FormationCompletes->deleteAll([
+                'employee_id' => $id
+            ]);
             $this->Flash->success(__('The employee has been deleted.'));
         } else {
             $this->Flash->error(__('The employee could not be deleted. Please, try again.'));
@@ -173,6 +180,33 @@ class EmployeesController extends AppController {
         return $this->redirect(['action' => 'index']);
     }
 
+    public function addAllFormationComplete($id = null){
+        $employee = $this->Employees->get($id, [
+            'contain' => ['PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]]
+        ]);
+
+        $this->loadModel('FormationsPositionTitles');
+        $FormationsPositionTitles = $this->FormationsPositionTitles->find('all')
+          ->where(['FormationsPositionTitles.position_title_id = ' => $employee->position_title->id]);
+
+        $FormationsPositionTitles = $FormationsPositionTitles->toArray();
+
+        if(!empty($FormationsPositionTitles)){
+            $this->loadModel('FormationCompletes');
+            foreach($FormationsPositionTitles as $FormationsPositionTitle){
+
+                $formationComplete = $this->FormationCompletes->newEntity();
+                $formationComplete->employee_id = $employee->id;
+                $formationComplete->formation_id = $FormationsPositionTitle->formation_id;
+                $this->FormationCompletes->save($formationComplete);
+            }
+        }
+    }
+
+    /*
+     * Toutes modifications à cette fonction doivent être apportées à la fonction
+     * sendFormationPlan du controller Users.
+     */
     public function sendFormationPlan($id = null, $action) {
         $employee = $this->Employees->get($id, [
             'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees',
@@ -201,17 +235,17 @@ class EmployeesController extends AppController {
         $html = ob_get_clean();
         ob_end_clean();
 
-// instantiate and use the dompdf class
+        // instantiate and use the dompdf class
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
 
-// (Optional) Setup the paper size and orientation
+        // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'portrait');
 
-// Render the HTML as PDF
+        // Render the HTML as PDF
         $dompdf->render();
 
-// Output the generated PDF to Browser
+        // Output the generated PDF to Browser
         $pdf_gen = $dompdf->output();
         if (file_put_contents('C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
             $email = new Email('default');
