@@ -1,7 +1,16 @@
 <?php
+    $urlToLinkedListFilter = $this->Url->build([
+        "controller" => "FormationCompletes",
+        "action" => "getFormations",
+        "_ext" => "json"
+            ]);
+    echo $this->Html->scriptBlock('var urlToLinkedListFilter = "' . $urlToLinkedListFilter . '";', ['block' => true]);
+    echo $this->Html->script('quickUpdate');
+?>
+<?php
 /**
   * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Building[]|\Cake\Collection\CollectionInterface $buildings
+  * @var \App\Model\Entity\Employee[]|\Cake\Collection\CollectionInterface $employees
   */
 $loguser = $this->request->session()->read('Auth.User');
 ?>
@@ -26,42 +35,28 @@ $loguser = $this->request->session()->read('Auth.User');
         <br />
         <li><?= '<li>'.$this->Html->link(__('Quick Update'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdate']).'</li>'; ?></li>
     </ul>
-    <br /><br />
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions Building') ?></li>
-        <li><?= $this->Html->link(__('New Building'), ['controller' => 'Buildings', 'action' => 'add']) ?> </li>
-    </ul>
 </nav>
-<div class="buildings index large-10 medium-9 columns content">
-    <h3><?= __('Buildings') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('address') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($buildings as $building): ?>
-            <tr>
-                <td><?= h($building->address) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $building->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $building->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $building->id], ['confirm' => __('Are you sure you want to delete # {0}?', $building->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+<div class="formationCompletes form large-9 medium-8 columns content">
+    <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
+    <h3><?= __('Quick Update') ?></h3>
+    <?php $this->Html->script('quickUpdate', ['block' => true]); ?>
+    <?php
+        echo $this->Form->control('employee_id', ['default' => $selectedEmployee->id]);
+        echo $this->Form->control('formation_id', ['options'  => $cleanFormations]);
+        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker', 'placeholder' => date('m-d-y')]);   
+        echo $this->Form->control('comment', ['default' => '']);
+    ?><br />
+    <label for="pieceJointe">Attachment</label>
+    <input type="file" name="pieceJointe" />
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
 </div>
+
+<!-- Script pour le date picker -->
+<script>
+$( function() {
+  $( "#datepicker" ).datepicker({
+      dateFormat: "m/d/y"
+  });
+} );
+</script>

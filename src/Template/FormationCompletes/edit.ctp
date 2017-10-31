@@ -12,24 +12,26 @@
                 ['confirm' => __('Are you sure you want to delete # {0}?', $formationComplete->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Formation Completes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Employees'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Employee'), ['controller' => 'Employees', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Formations'), ['controller' => 'Formations', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Formation'), ['controller' => 'Formations', 'action' => 'add']) ?></li>
+        <li>
+        <?= $this->Html->link(__('Back'), ['controller' => 'Employees', 'action' => 'edit', $employees->id]) ?>
+        </li>
     </ul>
 </nav>
 <div class="formationCompletes form large-9 medium-8 columns content">
-    <?= $this->Form->create($formationComplete) ?>
+    <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
     <fieldset>
-        <legend><?= __('Edit Formation Complete') ?></legend>
+        <legend><?= __('Edit Formation Completion') ?></legend>
         <h5> <?= ('Formation : ' . $formations->title) ?> </h5>
         <h5> <?= ('Employee : ' . $employees->first_name) ?> </h5>
         <?php
             echo $this->Form->control('lastTime_completed');
             echo $this->Form->control('comment');
-        ?>
+        ?><br />
+        <label for="pieceJointe">Attachment</label>
+        <input type="file" name="pieceJointe" />
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+
+

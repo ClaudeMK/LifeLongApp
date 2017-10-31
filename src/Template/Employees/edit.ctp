@@ -34,7 +34,7 @@
             echo $this->Form->control('building_id', ['options' => $buildings]);
             echo $this->Form->control('parent_id', ['options' => $parentEmployees]);
             echo $this->Form->control('additional_Infos');
-            echo $this->Form->control('last_sent_formation_plan', ['empty' => true]);
+           // echo $this->Form->control('last_sent_formation_plan', ['empty' => true]);
             echo $this->Form->control('active');
         ?>
     </fieldset>
@@ -66,11 +66,14 @@
                 <tr>
                     <td><?= h($formations->title) ?></td>
                     <td><?= h($formations->category->title) ?></td>
-                    <td><?= ($formationC->lastTime_completed) ?>
-                        <?= ($this->Html->link(__('Edit lastTime_completed'), ['controller' => 'formationCompletes', 'action' => 'edit', $formationC->id])) ?></td>
+                    <td><?php if($formationC->lastTime_completed == null){
+                        echo(__('The formation was never completed'));
+                    } else {
+                        echo($formationC->lastTime_completed);
+                    }?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['controller' => 'Formations', 'action' => 'view', $formations->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['controller' => 'Formations', 'action' => 'edit', $formations->id]) ?>
+                        <?= $this->Html->link(__('View'), ['controller' => 'formationCompletes', 'action' => 'view', $formationC->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['controller' => 'formationCompletes', 'action' => 'edit', $formationC->id]) ?>
                     </td>
                 </tr>
 
