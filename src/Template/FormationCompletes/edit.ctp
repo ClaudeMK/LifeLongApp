@@ -18,7 +18,7 @@
     </ul>
 </nav>
 <div class="formationCompletes form large-9 medium-8 columns content">
-    <?= $this->Form->create($formationComplete) ?>
+    <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Edit Formation Completion') ?></legend>
         <h5> <?= ('Formation : ' . $formations->title) ?> </h5>
@@ -26,7 +26,9 @@
         <?php
             echo $this->Form->control('lastTime_completed');
             echo $this->Form->control('comment');
-        ?>
+        ?><br />
+        <label for="pieceJointe">Attachment</label>
+        <input type="file" name="pieceJointe" />
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

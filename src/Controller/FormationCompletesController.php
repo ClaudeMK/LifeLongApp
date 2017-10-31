@@ -79,18 +79,21 @@ class FormationCompletesController extends AppController
     public function edit($id = null)
     {
         $formationComplete = $this->FormationCompletes->get($id, [
-            'contain' => []
+            'contain' => ['Attachments']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $formationComplete = $this->FormationCompletes->patchEntity($formationComplete, $this->request->getData());
             
-            if ($this->FormationCompletes->save($formationComplete)) {
-                $this->Flash->success(__('The formation complete has been saved.'));
+            if($this->saveAttachment($formationComplete))
+            {
+                if ($this->FormationCompletes->save($formationComplete)) {
+                    $this->Flash->success(__('The formation complete has been saved.'));
 
-                return $this->redirect(['controller' => 'Employees',
-                    'action' => 'edit', $formationComplete->employee_id]);
+                    return $this->redirect(['controller' => 'Employees',
+                        'action' => 'edit', $formationComplete->employee_id]);
+                }
+                $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
         }
 
         $this->loadModel('Formations');
@@ -168,7 +171,6 @@ class FormationCompletesController extends AppController
                     $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
                 }
             }
-            
         }
         
         $this->set(compact('formationComplete', 'employees', 'cleanFormations', 'selectedEmployee'));
@@ -213,7 +215,7 @@ class FormationCompletesController extends AppController
     
     public function saveAttachment($currentFormation) {
         $attachmentOK = false;
-        
+
         $attachmentNEW = $this->request->data['pieceJointe'];
         $attachementToOutput = $this->FormationCompletes->newEntity();
         $filename = $attachmentNEW['name'];
