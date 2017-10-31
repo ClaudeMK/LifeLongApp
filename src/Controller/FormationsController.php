@@ -68,8 +68,8 @@ class FormationsController extends AppController
         $formation = $this->Formations->newEntity();
         if ($this->request->is('post')) {
             $formation = $this->Formations->patchEntity($formation, $this->request->getData());
-            $formation->title = ucfirst($formation->title);
-            $formation->note = ucfirst($formation->note);
+            $formation->title = editFirstLetterUpper($formation->title);
+            $formation->note = editFirstLetterUpper($formation->note);
             if ($this->Formations->save($formation)) {
                 $this->Flash->success(__('The formation has been saved.'));
 
@@ -84,6 +84,11 @@ class FormationsController extends AppController
         $positionsTitles = $this->Formations->PositionTitles->find('list', ['limit' => 200]);
         $this->set(compact('formation', 'categories', 'frequencies', 'modalities', 'notifications', 'positionsTitles'));
         $this->set('_serialize', ['formation']);
+    }
+    
+    
+    public function editFirstLetterUpper($dataLetter){
+        return (ucfirst($dataLetter));
     }
 
     /**

@@ -19,7 +19,7 @@ class FrequenciesControllerTest extends IntegrationTestCase
         'app.frequencies',
         'app.formations',
         'app.categories',
-        'app.start_notifications',
+        'app.notifications',
         'app.modalities'
     ];
 

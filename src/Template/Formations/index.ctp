@@ -35,9 +35,9 @@ $loguser = $this->request->session()->read('Auth.User');
     <?php
     echo $this->Form->create(null, ['valueSources' => 'query']);
     // You'll need to populate $authors in the template from your controller
-    echo $this->Form->input('search');
+    echo $this->Form->input('number');
     // Match the search param in your table configuration
-
+    echo $this->Form->input('title');
     echo $this->Form->button('Filter', ['type' => 'submit']);
     echo $this->Html->link('Reset', ['action' => 'index']);
     echo $this->Form->end();

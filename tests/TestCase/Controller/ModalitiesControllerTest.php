@@ -20,7 +20,7 @@ class ModalitiesControllerTest extends IntegrationTestCase
         'app.formations',
         'app.categories',
         'app.frequencies',
-        'app.start_notifications'
+        'app.notifications'
     ];
 
     /**

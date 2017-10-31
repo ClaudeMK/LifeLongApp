@@ -26,7 +26,7 @@ class FormationCompletesControllerTest extends IntegrationTestCase
         'app.frequencies',
         'app.modalities',
         'app.notifications',
-        'app.formations_position_titles',
+        //'app.formations_position_titles',
         'app.buildings'
     ];
 

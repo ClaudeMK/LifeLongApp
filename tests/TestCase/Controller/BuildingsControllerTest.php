@@ -21,6 +21,7 @@ class BuildingsControllerTest extends IntegrationTestCase
         'app.languages',
         'app.position_titles'
     ];
+    
 
     /**
      * Test index method

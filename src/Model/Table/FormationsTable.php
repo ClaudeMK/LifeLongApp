@@ -38,11 +38,11 @@ class FormationsTable extends Table
 
         // Setup search filter using search manager
         $this->searchManager()
-                ->value('search')
+                ->value('number')
                 // Here we will alias the 'q' query param to search the `Articles.title`
                 // field and the `Articles.content` field, using a LIKE match, with `%`
                 // both before and after.
-                ->add('search', 'Search.Like', [
+                ->add('number', 'Search.Like', [
                     'before' => true,
                     'after' => true,
                     'fieldMode' => 'OR',
@@ -51,7 +51,7 @@ class FormationsTable extends Table
                     'wildcardOne' => '?',
                     'field' => ['number']
                 ])
-                ->add('search', 'Search.Like', [
+                ->add('title', 'Search.Like', [
                     'before' => true,
                     'after' => true,
                     'fieldMode' => 'OR',
