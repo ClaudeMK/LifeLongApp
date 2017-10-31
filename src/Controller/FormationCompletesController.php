@@ -155,14 +155,20 @@ class FormationCompletesController extends AppController
             
             $timeToConvert = strtotime($this->request->data['lastTime_completed']);
             $formationComplete->lastTime_completed = date('Y-m-d', $timeToConvert);
+            $formationComplete->comment = $this->request->data['comment'];
             
-            if ($this->FormationCompletes->save($formationComplete)) {
-                $this->Flash->success(__('The formation complete has been saved.'));
-                
-                return $this->redirect(['controller' => 'FormationCompletes','action' => 'quickUpdate', $formationComplete->employee_id]);
-            } else {
-                $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
+            if($this->saveAttachment($formationComplete))
+            {
+                if ($this->FormationCompletes->save($formationComplete)) {
+                    $this->Flash->success(__('The formation complete has been saved.'));
+
+                    return $this->redirect(['controller' => 'FormationCompletes',
+                        'action' => 'quickUpdate', $formationComplete->employee_id]);
+                } else {
+                    $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
+                }
             }
+            
         }
         
         $this->set(compact('formationComplete', 'employees', 'cleanFormations', 'selectedEmployee'));
@@ -199,10 +205,63 @@ class FormationCompletesController extends AppController
         $id = $currentFormation->id;
         
         $formationComplete = $this->FormationCompletes->get($id, [
-                'contain' => []
+                'contain' => ['Attachments']
             ]);
-                         
-        return $formationComplete;      
+         
+        return $formationComplete;     
+    }
+    
+    public function saveAttachment($currentFormation) {
+        $attachmentOK = false;
+        
+        $attachmentNEW = $this->request->data['pieceJointe'];
+        $attachementToOutput = $this->FormationCompletes->newEntity();
+        $filename = $attachmentNEW['name'];
+        $uploadFile = 'Files/'.$filename;
+        
+        if($currentFormation->attachments == null) {
+            if(move_uploaded_file($this->request->data['pieceJointe']['tmp_name'], 'img/'.$uploadFile)) {
+                $attachementToOutput->formation_complete_id = $currentFormation->id;
+                $attachementToOutput->name = $attachmentNEW['name'];
+                $attachementToOutput->path = 'Files/';
+
+                if($this->FormationCompletes->Attachments->save($attachementToOutput)) {
+                    return ($attachmentOK = true);
+                } else {
+                    $this->Flash->error(__('Unable to upload file, please try again. FUCK'));
+                    return $attachmentOK;
+                }
+            } else {
+                $this->Flash->error(__('Unable to upload file, please try again.'));
+                return $attachmentOK;
+            }
+        }
+        else
+        {
+            if(move_uploaded_file($this->request->data['pieceJointe']['tmp_name'], 'img/'.$uploadFile)) {
+                $attachementToOutput = $this->FormationCompletes->Attachments->find()
+                        ->where(['formation_complete_id' => $currentFormation->id])
+                        ->first();
+
+                $id = $attachementToOutput->id;
+        
+                $attachementToOutput = $this->FormationCompletes->Attachments->get($id, [
+                        'contain' => []
+                    ]);
+                
+                $attachementToOutput->name = $attachmentNEW['name'];
+
+                if($this->FormationCompletes->Attachments->save($attachementToOutput)) {
+                    return ($attachmentOK = true);
+                } else {
+                    $this->Flash->error(__('Unable to upload file, please try again. FUCK'));
+                    return $attachmentOK;
+                }
+            } else {
+                $this->Flash->error(__('Unable to upload file, please try again.'));
+                return $attachmentOK;
+            }
+        }
     }
     
 }

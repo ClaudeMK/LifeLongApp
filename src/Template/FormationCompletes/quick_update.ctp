@@ -43,9 +43,11 @@ $loguser = $this->request->session()->read('Auth.User');
     <?php
         echo $this->Form->control('employee_id', ['default' => $selectedEmployee->id]);
         echo $this->Form->control('formation_id', ['options'  => $cleanFormations]);
-        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker']);   
-        echo $this->Form->control('comment');
-    ?>
+        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker', 'placeholder' => date('m-d-y')]);   
+        echo $this->Form->control('comment', ['default' => '']);
+    ?><br />
+    <label for="pieceJointe">Attachment</label>
+    <input type="file" name="pieceJointe" />
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>

@@ -21,14 +21,14 @@ class ContactController extends AppController
 
             if ($isHuman) {
                 if ($contact->execute($this->request->getData())) {
-                $this->Flash->success('Nous vous contacterons bientôt.');
+                $this->Flash->success('We will contact you soon');
                 
                 //Code redirect
                 } else {
-                    $this->Flash->error('Il y a eu un problème lors de l\'envoi du formulaire.');
+                    $this->Flash->error('Oops, there\'s a problem with your form');
                 }
             } else {
-                $this->Flash->error('Il y a eu un problème avec le captcha!.');
+                $this->Flash->error('Oops, there\'s a problem with the captcha!.');
             }
             
         }
