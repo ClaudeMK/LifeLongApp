@@ -81,6 +81,9 @@ class EmployeesController extends AppController {
             $employee->last_name = ucfirst($employee->last_name);
             $employee->additional_Infos = ucfirst($employee->additional_Infos);
             $data = $employee->cell_number;
+            if($employee->parent_id == null) {
+                $employee->parent_id = 1;
+            }
             if (is_numeric($data) && strlen($data) == 10) {
                 $employee->cell_number = substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6);
             }

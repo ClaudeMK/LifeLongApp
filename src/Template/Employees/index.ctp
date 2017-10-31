@@ -62,26 +62,28 @@ $loguser = $this->request->session()->read('Auth.User');
         </thead>
         <tbody>
             <?php foreach ($employees as $employee): ?>
-            <tr>
-                <td><?= h($employee->number) ?></td>
-                <td><?= h($employee->last_name) ?></td>
-                <td><?= h($employee->first_name) ?></td>
-                <td><?= h($employee->cell_number) ?></td>
-                <td><?= h($employee->email) ?></td>
-                <td><?= h($employee->position_title->title) ?></td>
-                <td>
-                    <?php if($employee->parent_id !== 0){?>
-                        <?= h($employee->parent_employee->first_name . ' ' . $employee->parent_employee->last_name) ?>
-                    <?php } ?>
-                </td>
-                <td><?= h($employee->last_sent_formation_plan) ?></td>
-                <td class="actions">
-                    <!--<?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>-->
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $employee->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer # {0}?', $employee->id)]) ?>
-                    <?= $this->Html->link(__('Send'), ['action' => 'sendFormationPlan', $employee->id, 'index']) ?>
-                </td>
-            </tr>
+            <?php if($employee->id != 1) { ?>          
+                <tr>
+                    <td><?= h($employee->number) ?></td>
+                    <td><?= h($employee->last_name) ?></td>
+                    <td><?= h($employee->first_name) ?></td>
+                    <td><?= h($employee->cell_number) ?></td>
+                    <td><?= h($employee->email) ?></td>
+                    <td><?= h($employee->position_title->title) ?></td>
+                    <td>
+                        <?php if($employee->parent_id != 1){?>
+                            <?= h($employee->parent_employee->first_name . ' ' . $employee->parent_employee->last_name) ?>
+                        <?php } ?>
+                    </td>
+                    <td><?= h($employee->last_sent_formation_plan) ?></td>
+                    <td class="actions">
+                        <!--<?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>-->
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $employee->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer # {0}?', $employee->id)]) ?>
+                        <?= $this->Html->link(__('Send'), ['action' => 'sendFormationPlan', $employee->id, 'index']) ?>
+                    </td>
+                </tr>
+            <?php } ?>
             <?php endforeach; ?>
         </tbody>
     </table>
