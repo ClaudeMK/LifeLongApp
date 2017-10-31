@@ -15,9 +15,7 @@ use Cake\Mailer\Email;
  */
 class EmployeesController extends AppController {
 
-
-    public function initialize()
-    {
+    public function initialize() {
         parent::initialize();
 
         $this->loadComponent('Search.Prg', [
@@ -25,7 +23,6 @@ class EmployeesController extends AppController {
             // the PRG component work only for specified methods.
             'actions' => ['index', 'lookup']
         ]);
-
     }
 
     /**
@@ -77,15 +74,17 @@ class EmployeesController extends AppController {
         $employee = $this->Employees->newEntity();
         if ($this->request->is('post')) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
-            $employee->first_name = ucfirst($employee->first_name);
-            $employee->last_name = ucfirst($employee->last_name);
-            $employee->additional_Infos = ucfirst($employee->additional_Infos);
+            $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
+            $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
+            $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
+            
             $data = $employee->cell_number;
             if($employee->parent_id == null) {
                 $employee->parent_id = 1;
             }
             if (is_numeric($data) && strlen($data) == 10) {
-                $employee->cell_number = substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6);
+
+                $employee->cell_number = $this->editPhoneDots($data);
             }
             if ($this->Employees->save($employee)) {
                 $this->Flash->success(__('The employee has been saved.'));
@@ -103,6 +102,16 @@ class EmployeesController extends AppController {
         $this->set('_serialize', ['employee']);
     }
 
+    public function editFirstLetterUpper($dataLetter){
+        return (ucfirst($dataLetter));
+    }
+    
+            
+            
+    public function editPhoneDots($data) {
+        return(substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6));
+    }
+
     /**
      * Edit method
      *
@@ -116,13 +125,13 @@ class EmployeesController extends AppController {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
-            $employee->first_name = ucfirst($employee->first_name);
-            $employee->last_name = ucfirst($employee->last_name);
-            $employee->additional_Infos = ucfirst($employee->additional_Infos);
+            $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
+            $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
+            $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
             $data = $employee->cell_number;
             $data = str_replace('.', '', $data);
             if (is_numeric($data) && strlen($data) == 10) {
-                $employee->cell_number = substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6);
+                $employee->cell_number = $this->editPhoneDots($data);
             }
             if ($this->Employees->save($employee)) {
                 $this->Flash->success(__('The employee has been saved.'));
@@ -139,7 +148,7 @@ class EmployeesController extends AppController {
 
         $this->loadModel('FormationCompletes');
         $formationComplete = $this->FormationCompletes->find('all')
-          ->where(['FormationCompletes.employee_id = ' => $employee->id]);
+                ->where(['FormationCompletes.employee_id = ' => $employee->id]);
 
         $formationComplete = $formationComplete->toArray();
 
@@ -217,11 +226,16 @@ class EmployeesController extends AppController {
         $curr_timestamp = date('Y-m-d H:i:s');
         $emailEmp = $employee->email;
         $lang = $employee->language_id;
+        $this->loadModel('FormationCompletes');
+        $formationCompletes = $this->FormationCompletes->find('all')
+                ->where(['FormationCompletes.employee_id = ' => $employee->id]);
+
+        $formationCompletes = $formationCompletes->toArray();
         ob_start();
-        if ($lang == 1){
-            include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
-        }else{
-            include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
+        if ($lang == 1) {
+            include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
+        } else {
+            include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
         }
         $html = ob_get_clean();
         ob_end_clean();
@@ -238,10 +252,10 @@ class EmployeesController extends AppController {
 
         // Output the generated PDF to Browser
         $pdf_gen = $dompdf->output();
-        if (file_put_contents('C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
+        if (file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
             $email = new Email('default');
             $email->to($emailEmp)
-                    ->setAttachments(['formationPlan.pdf' => 'C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
+                    ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
                     ->subject("Formation plan of " . $curr_timestamp)
                     ->send("Formation plan");
             $employee->last_sent_formation_plan = $curr_timestamp;

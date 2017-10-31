@@ -15,5 +15,17 @@ class FormationsPositionTitlesController extends AppController {
         ]);
         $this->set('formations', $formations);
     }
+    
+    public function getByPositionTitleAndFormation($positionTitleId, $formationId) {
+        
+        
+        $formationPositionTitle = $this->FormationsPositionTitles->find('all', [
+            'conditions' => ['FormationsPositionTitles.position_title_id' => $positionTitleId, 'FormationsPositionTitles.formation_id' => $formationId],
+        ]);
+        return $formationPositionTitle;
+    }
+    
 }
+
+
 
