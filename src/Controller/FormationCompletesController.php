@@ -83,10 +83,12 @@ class FormationCompletesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $formationComplete = $this->FormationCompletes->patchEntity($formationComplete, $this->request->getData());
+            
             if ($this->FormationCompletes->save($formationComplete)) {
                 $this->Flash->success(__('The formation complete has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Employees',
+                    'action' => 'edit', $formationComplete->employee_id]);
             }
             $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
         }

@@ -37,21 +37,24 @@ $loguser = $this->request->session()->read('Auth.User');
     </ul>
 </nav>
 <div class="formationCompletes form large-9 medium-8 columns content">
-    <?= $this->Form->create($formationComplete) ?>
+    <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
     <h3><?= __('Quick Update') ?></h3>
     <?php $this->Html->script('quickUpdate', ['block' => true]); ?>
     <?php
         echo $this->Form->control('employee_id', ['default' => $selectedEmployee->id]);
         echo $this->Form->control('formation_id', ['options'  => $cleanFormations]);
-        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker']);     
+        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker']);   
+        echo $this->Form->control('comment');
     ?>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker({
-        dateFormat: "m/d/y"
-    });
-  } );
-  </script>
+
+<!-- Script pour le date picker -->
+<script>
+$( function() {
+  $( "#datepicker" ).datepicker({
+      dateFormat: "m/d/y"
+  });
+} );
+</script>
