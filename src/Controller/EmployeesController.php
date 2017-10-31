@@ -125,9 +125,9 @@ class EmployeesController extends AppController {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
-            $employee->first_name = editFirstLetterUpper($employee->first_name);
-            $employee->last_name = editFirstLetterUpper($employee->last_name);
-            $employee->additional_Infos = editFirstLetterUpper($employee->additional_Infos);
+            $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
+            $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
+            $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
             $data = $employee->cell_number;
             $data = str_replace('.', '', $data);
             if (is_numeric($data) && strlen($data) == 10) {
@@ -226,11 +226,16 @@ class EmployeesController extends AppController {
         $curr_timestamp = date('Y-m-d H:i:s');
         $emailEmp = $employee->email;
         $lang = $employee->language_id;
+        $this->loadModel('FormationCompletes');
+        $formationCompletes = $this->FormationCompletes->find('all')
+                ->where(['FormationCompletes.employee_id = ' => $employee->id]);
+
+        $formationCompletes = $formationCompletes->toArray();
         ob_start();
         if ($lang == 1) {
-            include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
+            include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
         } else {
-            include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
+            include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
         }
         $html = ob_get_clean();
         ob_end_clean();
@@ -247,10 +252,10 @@ class EmployeesController extends AppController {
 
         // Output the generated PDF to Browser
         $pdf_gen = $dompdf->output();
-        if (file_put_contents('C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
+        if (file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
             $email = new Email('default');
             $email->to($emailEmp)
-                    ->setAttachments(['formationPlan.pdf' => 'C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
+                    ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
                     ->subject("Formation plan of " . $curr_timestamp)
                     ->send("Formation plan");
             $employee->last_sent_formation_plan = $curr_timestamp;

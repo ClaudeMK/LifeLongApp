@@ -68,8 +68,8 @@ class FormationsController extends AppController
         $formation = $this->Formations->newEntity();
         if ($this->request->is('post')) {
             $formation = $this->Formations->patchEntity($formation, $this->request->getData());
-            $formation->title = editFirstLetterUpper($formation->title);
-            $formation->note = editFirstLetterUpper($formation->note);
+            $formation->title = $this->editFirstLetterUpper($formation->title);
+            $formation->note = $this->editFirstLetterUpper($formation->note);
             if ($this->Formations->save($formation)) {
                 $this->Flash->success(__('The formation has been saved.'));
 

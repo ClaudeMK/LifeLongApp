@@ -34,7 +34,7 @@
             echo $this->Form->control('building_id', ['options' => $buildings]);
             echo $this->Form->control('parent_id', ['options' => $parentEmployees]);
             echo $this->Form->control('additional_Infos');
-            echo $this->Form->control('last_sent_formation_plan', ['empty' => true]);
+           // echo $this->Form->control('last_sent_formation_plan', ['empty' => true]);
             echo $this->Form->control('active');
         ?>
     </fieldset>
