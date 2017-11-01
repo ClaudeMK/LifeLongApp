@@ -74,8 +74,11 @@ class EmployeesController extends AppController {
         $employee = $this->Employees->newEntity();
         if ($this->request->is('post')) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
+            $employee->first_name = $this->removeSpace($employee->first_name);
             $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
+            $employee->last_name = $this->removeSpace($employee->last_name);
             $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
+            $employee->additional_Infos = $this->removeSpace($employee->additional_Infos);
             $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
             
             $data = $employee->cell_number;
@@ -106,10 +109,12 @@ class EmployeesController extends AppController {
         return (ucfirst($dataLetter));
     }
     
-            
-            
     public function editPhoneDots($data) {
         return(substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6));
+    }
+    
+    public function removeSpace($input) {
+        return (trim($input));
     }
 
     /**
