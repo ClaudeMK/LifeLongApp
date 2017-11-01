@@ -130,8 +130,11 @@ class EmployeesController extends AppController {
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
+            $employee->first_name = $this->removeSpace($employee->first_name);
             $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
+            $employee->last_name = $this->removeSpace($employee->last_name);
             $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
+            $employee->additional_Infos = $this->removeSpace($employee->additional_Infos);
             $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
             $data = $employee->cell_number;
             $data = str_replace('.', '', $data);
