@@ -6,7 +6,15 @@ use App\Controller\FormationsPositionTitlesController;
 <html>
     <head>
         <title>Formation plan</title>
-        <style> td{width: 80px;border: solid}</style>
+        <style>
+            th,td,tr,table{
+                border:1px solid; color:black; border-collapse: collapse;
+            }
+            td{
+                text-align: center;
+            }
+        </style>
+
     </head>
     <body>
         <h1><img src="../../../webroot/img/logo/lifelongBlue.png" alt="Logo">  Formation plan</h1>
@@ -26,18 +34,18 @@ use App\Controller\FormationsPositionTitlesController;
         echo 'Building : ' . h($employee->building->address) . "<br>";
         if (!empty($formationCompletes)) :
             ?>
-        <br/>
+            <br/>
             <table cellpadding="0" cellspacing="0" style="border:1px solid; color:black; border-collapse: collapse">
                 <tr>
-                    <th scope="col"><?= __('Formation') ?></th>
-                    <th scope="col"><?= __('Status') ?></th>
-                    <th scope="col"><?= __('frequency') ?></th>
-                    <th scope="col"><?= __('Done on') ?></th>
-                    <th scope="col"><?= __('Expected on') ?></th>
-                    <th scope="col"><?= __('Expired') ?></th>
-                    <th scope="col"><?= __('Expected on') ?></th>
-                    <th scope="col"><?= __('To do') ?></th>
-                    <th scope="col"><?= __('Never done') ?></th>
+                    <th scope="col" style="width: 130px;"><?= __('Formation') ?></th>
+                    <th scope="col" style="width: 80px;"><?= __('Status') ?></th>
+                    <th scope="col" style="width: 80px;"><?= __('frequency') ?></th>
+                    <th scope="col" style="width: 80px;"><?= __('Done on') ?></th>
+                    <th scope="col" style="width: 80px;"><?= __('Expected on') ?></th>
+                    <th scope="col" style="width: 70px;"><?= __('Expired') ?></th>
+                    <th scope="col" style="width: 60px;"><?= __('To come') ?></th>
+                    <th scope="col" style="width: 60px;"><?= __('To do') ?></th>
+                    <th scope="col" style="width: 60px;"><?= __('Never done') ?></th>
                 </tr>
                 <?php
                 $style_rouge = "background-color: #FF0000;";
@@ -46,7 +54,9 @@ use App\Controller\FormationsPositionTitlesController;
                 $style_white = "background-color = white;";
                 $compteur = 0;
                 $this->loadModel('Formations');
-
+                $tabDone = array();
+                $tabExpected = array();
+                $tabNever = array();
                 foreach ($formationCompletes as $formationComplete):
                     $formationI = $this->Formations->get($formationComplete->formation_id, [
                         'contain' => ['Frequencies', 'Notifications']
@@ -55,70 +65,165 @@ use App\Controller\FormationsPositionTitlesController;
                     $Todo = '';
                     $NeverDone = '';
                     $ToCome = '';
-
                     $style_rouge = "background-color: #FF0000;";
                     $style_jaune = "background-color: yellow;";
                     $style_gray = "background-color: #DCDCDC;";
                     $style_white = "background-color = white;";
-
                     $notificationId = $formationI->notification_id;
-                    if ($notificationId != 1 && $notificationId != 7){
-                        $notification = $formationI->notification->title;
-                        $notificationTime = new Time($notification);
-                    }
-                    
-                    
                     $frequencyId = $formationI->frequencie_id;
-                    //1,7
-                    //1,6,7,8
-                    if ($frequencyId != 1 && $frequencyId != 6 && $frequencyId != 7 && $frequencyId != 8){
-                        $frequency = $formationI->frequency->title;
-                        $frequencyTime = new Time($frequency);
+                    $now = new Time();
+                    if ($notificationId != 1 && $notificationId != 7) {
+                        $notification = $formationI->notification->title;
+                        $notificationInterval = DateInterval::createFromDateString($notification);
+                    } else {
+                        $notification = '';
                     }
-                        
-                    
+                    if ($frequencyId != 1 && $frequencyId != 6 && $frequencyId != 7 && $frequencyId != 8) {
+                        $frequency = $formationI->frequency->title;
+                        $frequencyInterval = DateInterval::createFromDateString($frequency);
+                    } else {
+                        $frequency = '';
+                    }
+                    $expired = '';
+                    $expectedOn = '';
+                    $Todo = '';
+                    $expiredDisplay = '';
+                    $toCome = '';
+                    $toComeDisplay = '';
+
                     if ($formationComplete->lastTime_completed != null) {
-                        $lastTimeCompleted = new Time($formationComplete->lastTime_completed);
+                        $lastTimeCompleted = $formationComplete->lastTime_completed;
+                        $expectedOn = $lastTimeCompleted->add($frequencyInterval);
+                        $expired = date_diff($now, $expectedOn);
+                        $toCome = date_diff($expectedOn, $now);
+                        $notificationDays = $notificationInterval->y * 365 + $notificationInterval->m * 30 + $notificationInterval->d;
+                        if ($expired->invert == 1) {
+                            $style = $style_rouge;
+                            $Todo = 'To do';
+                            $expiredDisplay = $expired->days . ' jours';
 
+                            array_push($tabDone, [
+                                $style,
+                                $formationI,
+                                $formationComplete,
+                                $expectedOn,
+                                $expiredDisplay,
+                                $toComeDisplay,
+                                $Todo,
+                                $NeverDone
+                            ]);
+                        } else if (($toCome->days - $notificationDays) < 0) {
+                            $toComeDisplay = 'To come';
+                            $style = $style_jaune;
+                            $Todo = 'To do';
 
-                        if ($lastTimeCompleted->wasWithinLast($frequency)) {
-                            $Completed = true;
-                            $ToCome = 'To come';
-                            If ($compteur % 2 == 0) {
+                            array_push($tabExpected, [
+                                $style,
+                                $formationI,
+                                $formationComplete,
+                                $expectedOn,
+                                $expiredDisplay,
+                                $toComeDisplay,
+                                $Todo,
+                                $NeverDone
+                            ]);
+                            $toComeDisplay = ($notificationDays - $toCome->days) . ' jours';
+                        } else {
+                            if ($compteur % 2 == 0) {
                                 $style = $style_gray;
                             } else {
                                 $style = $style_white;
                             }
-                        } else if (!$lastTimeCompleted->wasWithinLast($notification)) {
-                            $style = $style_jaune;
-                            $Todo = 'To do';
-                        } else if (!$lastTimeCompleted->wasWithinLast($frequency)) {
-                            $Completed = false;
-                            $Expired = 'Expired';
-                            $style = $style_rouge;
+                            $tabNever = array();
+                            array_push($tabNever, [
+                                $style,
+                                $formationI,
+                                $formationComplete,
+                                $expectedOn,
+                                $expiredDisplay,
+                                $toComeDisplay,
+                                $Todo,
+                                $NeverDone
+                            ]);
                         }
                     } else {
                         $Completed = false;
                         $NeverDone = 'Never done';
+                        if ($frequencyId == 1 ){
+                            $Todo = 'To do';
+                            if ($formationComplete->status == 'Obligatory'){
+                                $style = $style_rouge;
+                            
+
+                            array_push($tabDone, [
+                                $style,
+                                $formationI,
+                                $formationComplete,
+                                $expectedOn,
+                                $expiredDisplay,
+                                $toComeDisplay,
+                                $Todo,
+                                $NeverDone
+                            ]);
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        if ($frequencyId == 8 ){
+                            $Todo = 'To do';
+                        }
+
                         If ($compteur % 2 == 0) {
                             $style = $style_gray;
                         } else {
                             $style = $style_white;
                         }
-                    }
-                    echo '<tr style="' . $style . '"><td>' . h($formationI->title) . '</td><td>' . h($formationComplete->status)
-                    . '</td><td>' . h($formationI->frequency->title) . '</td><td>' . h($formationComplete->lastTime_completed)
-                    . '</td><td>' . h($frequencyTime) . '</td><td>' . h($Expired)
-                    . '</td><td>' . h($ToCome) . '</td><td>' . h($Todo) . '</td><td>' . h($NeverDone) . '</td></tr>';
-                    $compteur++;
 
+
+                        array_push($tabNever, [
+                            $style,
+                            $formationI,
+                            $formationComplete,
+                            $expectedOn,
+                            $expiredDisplay,
+                            $toComeDisplay,
+                            $Todo,
+                            $NeverDone
+                        ]);
+                    }
+                    /*
+                      echo '<tr style="' . $style . '"><td>' . h($formationI->title) . '</td><td>' . h($formationComplete->status)
+                      . '</td><td>' . h($formationI->frequency->title) . '</td><td>' . h($formationComplete->lastTime_completed)
+                      . '</td><td>' . h($expectedOn) . '</td><td>' . h($expiredDisplay)
+                      . '</td><td>' . h($toComeDisplay) . '</td><td>' . h($Todo) . '</td><td>' . h($NeverDone) . '</td></tr>'; */
+                    $compteur++;
                 endforeach;
+                foreach ($tabDone as $done) {
+                    echo '<tr style="' . $done[0] . '"><td>' . h($done[1]->title) . '</td><td>' . h($done[2]->status)
+                    . '</td><td>' . h($done[1]->frequency->title) . '</td><td>' . h($done[2]->lastTime_completed)
+                    . '</td><td>' . h($done[3]) . '</td><td>' . h($done[4])
+                    . '</td><td>' . h($done[5]) . '</td><td>' . h($done[6]) . '</td><td>' . h($done[7]) . '</td></tr>';
+                }
+                foreach ($tabExpected as $done) {
+                    echo '<tr style="' . $done[0] . '"><td>' . h($done[1]->title) . '</td><td>' . h($done[2]->status)
+                    . '</td><td>' . h($done[1]->frequency->title) . '</td><td>' . h($done[2]->lastTime_completed)
+                    . '</td><td>' . h($done[3]) . '</td><td>' . h($done[4])
+                    . '</td><td>' . h($done[5]) . '</td><td>' . h($done[6]) . '</td><td>' . h($done[7]) . '</td></tr>';
+                }
+                foreach ($tabNever as $done) {
+                    echo '<tr style="' . $done[0] . '"><td>' . h($done[1]->title) . '</td><td>' . h($done[2]->status)
+                    . '</td><td>' . h($done[1]->frequency->title) . '</td><td>' . h($done[2]->lastTime_completed)
+                    . '</td><td>' . h($done[3]) . '</td><td>' . h($done[4])
+                    . '</td><td>' . h($done[5]) . '</td><td>' . h($done[6]) . '</td><td>' . h($done[7]) . '</td></tr>';
+                }
                 ?>
             </table>
 
-        <?php endif;?>
+        <?php endif; ?>
         <hr/>
-        <p>Print the <?= $curr_timestamp?></p>
+        <p>Printed the <?= $curr_timestamp ?></p>
         <?php die() ?>
     </body>
 </html>
