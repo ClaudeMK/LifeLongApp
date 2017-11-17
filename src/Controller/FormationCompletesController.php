@@ -276,4 +276,57 @@ class FormationCompletesController extends AppController
         
     }
     
+    
+    // à Tester
+    public function quickUpdateCsv() {
+        if ($this->request->is('post')) {
+            if($this->request->data['csvFile']['size'] > 0) {
+                $csvFile = $this->request->data['csvFile'];
+                $filename = $csvFile['name'];
+                $uploadFile = 'Files/csv/'.$filename;
+
+                if(move_uploaded_file($this->request->data['csvFile']['tmp_name'], 'img/'.$uploadFile)) {
+                    $filePath = ROOT . DS . "webroot" . DS . "/img/Files/csv/" . $filename;
+                    $isRead = fopen($filePath, "r");
+                    if ($isRead) {
+                        while (($line = fgets($isRead)) !== false) {
+                            $data = explode(';', $line);
+
+                            $formationId = $this->FormationCompletes->Formations->find()
+                                    ->where(['number' => $data[0]])
+                                    ->first();
+
+                            $employeeId = $this->FormationCompletes->Employees->find()
+                                    ->where(['number' => $data[1]])
+                                    ->first();
+
+                            $currentFormation = $this->FormationCompletes->find()
+                                    ->where(['formation_id' => $formationId, 'employee_id' => $employeeId])
+                                    ->first();
+
+                            $currentId = $currentFormation->id;
+                            $formationComplete = $this->FormationCompletes->get($currentId);
+                            $formationComplete->lastTime_completed = date(data[2]);
+
+                            if (!$this->FormationCompletes->save($formationComplete)) {
+                                $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
+                                return $this->redirect(['controller' => 'FormationCompletes', 'action' => 'quickUpdateCsv']);
+                            }
+
+                        }
+                        fclose($isRead);
+                        unlink($filePath);
+                    } else {
+                            $this->Flash->error(__('Unable to read the file, please try again.'));
+                    } 
+                } else {
+                        $this->Flash->error(__('Unable to upload file, please try again.'));
+                }
+            }
+        }
+
+        $this->set(compact('formationComplete'));
+        $this->set('_serialize', ['formationComplete']);
+        }
+    
 }
