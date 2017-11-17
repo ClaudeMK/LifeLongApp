@@ -325,8 +325,8 @@ class FormationCompletesController extends AppController
             }
         }
 
-    $this->set(compact('formationComplete'));
-    $this->set('_serialize', ['formationComplete']);
+        $this->set(compact('formationComplete'));
+        $this->set('_serialize', ['formationComplete']);
     }
     
 }
