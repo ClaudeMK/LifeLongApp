@@ -36,6 +36,7 @@
             echo $this->Form->control('additional_Infos');
            // echo $this->Form->control('last_sent_formation_plan', ['empty' => true]);
             echo $this->Form->control('active');
+            echo $this->Form->control('isSupervisor');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

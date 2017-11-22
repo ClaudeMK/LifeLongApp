@@ -13,7 +13,7 @@ use Cake\Mailer\Email;
  *
  * @method \App\Model\Entity\Employee[] paginate($object = null, array $settings = [])
  */
-class EmployeesController extends AppController {
+class SupervisorsController extends AppController {
 
     public function initialize() {
         parent::initialize();
@@ -31,19 +31,16 @@ class EmployeesController extends AppController {
      * @return \Cake\Http\Response|void
      */
     public function index() {
-        $this->paginate = [
-            'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees'],
-            'limit' => 10
-        ];
-        //$employees = $this->paginate($this->Employees);
-        //$this->set(compact('employees'));
-        //$this->set('_serialize', ['employees']);
+        $this->loadModel('Employees');
 
-        $query = $this->Employees
-                // Use the plugins 'search' custom finder and pass in the
-                // processed query params
-                ->find('search', ['search' => $this->request->query]);
-        $this->set('employees', $this->paginate($query));
+        $supervisors = $this->Employees->find('all')
+                        ->where(['Employees.isSupervisor' => true]);
+//                        
+//        $supervisors = $supervisors->toArray();
+//        debug($supervisors);
+//        die();
+        $this->set(compact('supervisors'));
+        $this->set('_serialize', ['supervisors']);
     }
 
     /**
@@ -54,14 +51,15 @@ class EmployeesController extends AppController {
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null) {
-        $employee = $this->Employees->get($id, [
+        $this->loadModel('Employees');
+        $supervisor = $this->Employees->get($id, [
             'contain' => ['Civilities', 'Languages', 'PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']], 'Buildings', 'ParentEmployees',
                 'ChildEmployees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings']]
         ]);
 
 
-        $this->set('employee', $employee);
-        $this->set('_serialize', ['employee']);
+        $this->set('supervisor', $supervisor);
+        $this->set('_serialize', ['supervisor']);
     }
 
     /**
@@ -76,9 +74,9 @@ class EmployeesController extends AppController {
             $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
             $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
             $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
-            
+
             $data = $employee->cell_number;
-            if($employee->parent_id == null) {
+            if ($employee->parent_id == null) {
                 $employee->parent_id = 1;
             }
             if (is_numeric($data) && strlen($data) == 10) {
@@ -101,12 +99,10 @@ class EmployeesController extends AppController {
         $this->set('_serialize', ['employee']);
     }
 
-    public function editFirstLetterUpper($dataLetter){
+    public function editFirstLetterUpper($dataLetter) {
         return (ucfirst($dataLetter));
     }
-    
-            
-            
+
     public function editPhoneDots($data) {
         return(substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6));
     }
@@ -179,20 +175,20 @@ class EmployeesController extends AppController {
         return $this->redirect(['action' => 'index']);
     }
 
-    public function addAllFormationComplete($id = null){
+    public function addAllFormationComplete($id = null) {
         $employee = $this->Employees->get($id, [
             'contain' => ['PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]]
         ]);
 
         $this->loadModel('FormationsPositionTitles');
         $FormationsPositionTitles = $this->FormationsPositionTitles->find('all')
-          ->where(['FormationsPositionTitles.position_title_id = ' => $employee->position_title->id]);
+                ->where(['FormationsPositionTitles.position_title_id = ' => $employee->position_title->id]);
 
         $FormationsPositionTitles = $FormationsPositionTitles->toArray();
 
-        if(!empty($FormationsPositionTitles)){
+        if (!empty($FormationsPositionTitles)) {
             $this->loadModel('FormationCompletes');
-            foreach($FormationsPositionTitles as $FormationsPositionTitle){
+            foreach ($FormationsPositionTitles as $FormationsPositionTitle) {
 
                 $formationComplete = $this->FormationCompletes->newEntity();
                 $formationComplete->employee_id = $employee->id;
@@ -206,6 +202,7 @@ class EmployeesController extends AppController {
      * Toutes modifications à cette fonction doivent être apportées à la fonction
      * sendFormationPlan du controller Users.
      */
+
     public function sendFormationPlan($id = null, $action) {
         $employee = $this->Employees->get($id, [
             'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees',

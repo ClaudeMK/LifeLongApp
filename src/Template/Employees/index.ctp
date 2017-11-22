@@ -25,6 +25,7 @@ $loguser = $this->request->session()->read('Auth.User');
         } ?>
         <br />
         <li><?= '<li>'.$this->Html->link(__('Quick Update'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdate']).'</li>'; ?></li>
+        <li><?= '<li>'.$this->Html->link(__('List of supervisors'), ['controller' => 'Supervisors', 'action' => 'index']).'</li>'; ?></li>
     </ul>
     <br /><br />
     <ul class="side-nav">

@@ -153,6 +153,11 @@ class EmployeesTable extends Table
             ->boolean('active')
             ->requirePresence('active', 'create')
             ->notEmpty('active');
+        
+        $validator
+            ->boolean('isSupervisor')
+            ->requirePresence('isSupervisor', 'create')
+            ->notEmpty('isSupervisor');
 
         return $validator;
     }
