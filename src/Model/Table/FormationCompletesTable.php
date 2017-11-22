@@ -34,7 +34,7 @@ class FormationCompletesTable extends Table
         parent::initialize($config);
 
         $this->setTable('formation_completes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('lastTime_completed');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Employees', [

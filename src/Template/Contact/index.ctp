@@ -1,7 +1,15 @@
+<?php
+$loguser = $this->request->session()->read('Auth.User');
+//test
+?>
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Navigation') ?></li>
-        <li><?= $this->Html->link(__('Home'), ['controller' => 'Employees', 'action' => 'index']) ?> </li>
+        <?php if($loguser['role'] === 'Administrator' || $loguser['role'] === 'Coordinator') { ?>
+            <li><?= $this->Html->link(__('Home'), ['controller' => 'Employees', 'action' => 'index']) ?> </li>
+        <?php } else { ?>
+            <li><?= $this->Html->link(__('Home'), ['controller' => 'Users', 'action' => 'login']) ?> </li>
+        <?php } ?>
     </ul>
 </nav>
 <div class="index large-10 medium-9 columns content">

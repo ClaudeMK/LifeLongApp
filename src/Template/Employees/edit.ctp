@@ -7,6 +7,7 @@
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Send formation plan'), ['action' => 'sendFormationPlan', $employee->id, 'edit']) ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $employee->id],
@@ -14,6 +15,7 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?></li>
+        
     </ul>
 </nav>
 <div class="employees form large-10 medium-9 columns content">
@@ -32,7 +34,7 @@
             echo $this->Form->control('building_id', ['options' => $buildings]);
             echo $this->Form->control('parent_id', ['options' => $parentEmployees]);
             echo $this->Form->control('additional_Infos');
-            echo $this->Form->control('last_sent_formation_plan', ['empty' => true]);
+           // echo $this->Form->control('last_sent_formation_plan', ['empty' => true]);
             echo $this->Form->control('active');
         ?>
     </fieldset>

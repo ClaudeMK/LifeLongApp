@@ -11,7 +11,10 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "~1.0",
         "captcha-com/cakephp-captcha": "4.*",
-        "friendsofcake/search": "^4.0"
+        "friendsofcake/search": "^4.0",
+        "friendsofcake/cakepdf": "^3.2",
+        "dompdf/dompdf": "^0.8.1",
+        "daoandco/cakephp-dompdf": "^1.2"
     },
     "require-dev": {
         "psy/psysh": "@stable",
