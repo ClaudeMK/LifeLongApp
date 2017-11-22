@@ -141,24 +141,37 @@ class UsersController extends AppController {
 
         return false;
     }
-    
+
     /*
      * Toutes modifications à cette fonction doivent être apportées à la fonction
      * sendFormationPlan du controller Employees.
      */
+
     public function sendFormationPlan($emailEmp) {
         $this->loadModel('Employees');
         $employee = $this->Employees->find()->where(['email' => $emailEmp])->first();
-        $curr_timestamp = date('Y-m-d H:i:s');
-
+        $employee = $this->Employees->get($employee->id, [
+            'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees',
+                'ChildEmployees' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings']]
+        ]);
         if ($employee->last_sent_formation_plan == null || !$employee->last_sent_formation_plan->wasWithinLast('24 hours')) {
             if ($employee != null) {
+//                $employeC = new EmployeesController();
+//                $employeC->nouvelleMethode($employee);
+                
+                
+                $curr_timestamp = date('Y-m-d H:i:s');
                 $lang = $employee->language_id;
+                $this->loadModel('FormationCompletes');
+                $formationCompletes = $this->FormationCompletes->find('all')
+                        ->where(['FormationCompletes.employee_id = ' => $employee->id]);
+
+                $formationCompletes = $formationCompletes->toArray();
                 ob_start();
-                if ($lang == 1){
-                    include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
-                }else{
-                    include "C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
+                if ($lang == 1) {
+                    include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
+                } else {
+                    include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
                 }
                 $html = ob_get_clean();
                 ob_end_clean();
@@ -175,18 +188,19 @@ class UsersController extends AppController {
 
                 // Output the generated PDF to Browser
                 $pdf_gen = $dompdf->output();
-
-                if (file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLong_App/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
+                if (file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
                     $email = new Email('default');
                     $email->to($emailEmp)
-                            ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLong_App/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
+                            ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
                             ->subject("Formation plan of " . $curr_timestamp)
                             ->send("Formation plan");
-                    
                     $employee->last_sent_formation_plan = $curr_timestamp;
-                    TableRegistry::get('Employees')->save($employee);
+                    $this->Employees->save($employee);
                     $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
                 }
+                
+                
+                
             } else {
                 $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
             }
