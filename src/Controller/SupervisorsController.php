@@ -35,12 +35,11 @@ class SupervisorsController extends AppController {
 
         $supervisors = $this->Employees->find('all')
                         ->where(['Employees.isSupervisor' => true]);
-//                        
-//        $supervisors = $supervisors->toArray();
-//        debug($supervisors);
-//        die();
-        $this->set(compact('supervisors'));
-        $this->set('_serialize', ['supervisors']);
+        $this->paginate = [
+            'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees'],
+            'limit' => 10
+        ];
+        $this->set('supervisors', $this->paginate($supervisors));
     }
 
     /**

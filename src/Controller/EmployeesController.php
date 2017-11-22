@@ -76,16 +76,20 @@ class EmployeesController extends AppController {
             $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
             $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
             $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
-            
+
             $data = $employee->cell_number;
-            if($employee->parent_id == null) {
+            if ($employee->parent_id == null) {
                 $employee->parent_id = 1;
             }
             if (is_numeric($data) && strlen($data) == 10) {
-
                 $employee->cell_number = $this->editPhoneDots($data);
             }
             if ($this->Employees->save($employee)) {
+                if ($employee->parent_id != 1) {
+                    $supervisor = $this->Employees->get($employee->parent_id);
+                    $supervisor->isSupervisor = true;
+                    $this->Employees->save($supervisor);
+                }
                 $this->Flash->success(__('The employee has been saved.'));
                 $this->addAllFormationComplete($employee->id);
                 return $this->redirect(['action' => 'index']);
@@ -101,12 +105,10 @@ class EmployeesController extends AppController {
         $this->set('_serialize', ['employee']);
     }
 
-    public function editFirstLetterUpper($dataLetter){
+    public function editFirstLetterUpper($dataLetter) {
         return (ucfirst($dataLetter));
     }
-    
-            
-            
+
     public function editPhoneDots($data) {
         return(substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6));
     }
@@ -122,6 +124,7 @@ class EmployeesController extends AppController {
         $employee = $this->Employees->get($id, [
             'contain' => ['PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]]
         ]);
+        $oldSupervisorID = $employee->parent_id;
         if ($this->request->is(['patch', 'post', 'put'])) {
             $employee = $this->Employees->patchEntity($employee, $this->request->getData());
             $employee->first_name = $this->editFirstLetterUpper($employee->first_name);
@@ -132,7 +135,27 @@ class EmployeesController extends AppController {
             if (is_numeric($data) && strlen($data) == 10) {
                 $employee->cell_number = $this->editPhoneDots($data);
             }
+            $oldSupervisor;
+            $newSupervisor;
             if ($this->Employees->save($employee)) {
+                if ($employee->parent_id != $oldSupervisorID) {
+                    if ($oldSupervisorID != 1) {
+                        if ($this->Employees->find('all')->where(['parent_id' => $oldSupervisorID])->count() == 0) {
+                            $oldSupervisor = $this->Employees->get($oldSupervisorID);
+                            $oldSupervisor->isSupervisor = false;
+                            $this->Employees->save($oldSupervisor);
+                        }
+                    }
+                    if ($employee->parent_id != 1) {
+                        $newSupervisor = $this->Employees->get($employee->parent_id);
+                        $newSupervisor->isSupervisor = true;
+                        $this->Employees->save($newSupervisor);
+                    }
+//                    debug($this->Employees->find('all')->where(['parent_id' => $oldSupervisorID])->count());
+//                    debug($oldSupervisor);
+//                    debug($newSupervisor);
+//                    die();
+                }
                 $this->Flash->success(__('The employee has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -179,20 +202,20 @@ class EmployeesController extends AppController {
         return $this->redirect(['action' => 'index']);
     }
 
-    public function addAllFormationComplete($id = null){
+    public function addAllFormationComplete($id = null) {
         $employee = $this->Employees->get($id, [
             'contain' => ['PositionTitles' => ['Formations' => ['Categories', 'Frequencies', 'Modalities', 'Notifications', 'PositionTitles']]]
         ]);
 
         $this->loadModel('FormationsPositionTitles');
         $FormationsPositionTitles = $this->FormationsPositionTitles->find('all')
-          ->where(['FormationsPositionTitles.position_title_id = ' => $employee->position_title->id]);
+                ->where(['FormationsPositionTitles.position_title_id = ' => $employee->position_title->id]);
 
         $FormationsPositionTitles = $FormationsPositionTitles->toArray();
 
-        if(!empty($FormationsPositionTitles)){
+        if (!empty($FormationsPositionTitles)) {
             $this->loadModel('FormationCompletes');
-            foreach($FormationsPositionTitles as $FormationsPositionTitle){
+            foreach ($FormationsPositionTitles as $FormationsPositionTitle) {
 
                 $formationComplete = $this->FormationCompletes->newEntity();
                 $formationComplete->employee_id = $employee->id;
@@ -206,6 +229,7 @@ class EmployeesController extends AppController {
      * Toutes modifications à cette fonction doivent être apportées à la fonction
      * sendFormationPlan du controller Users.
      */
+
     public function sendFormationPlan($id = null, $action) {
         $employee = $this->Employees->get($id, [
             'contain' => ['Civilities', 'Languages', 'PositionTitles', 'Buildings', 'ParentEmployees',

@@ -18,17 +18,7 @@ $loguser = $this->request->session()->read('Auth.User');
 </nav>
 <div class="employees index large-10 medium-9 columns content">
     <h3><?= __('Employees') ?></h3>
-    <?php
-    echo $this->Form->create(null, ['valueSources' => 'supervisors']);
-    // You'll need to populate $authors in the template from your controller
-    // Match the search param in your table configuration
-    echo $this->Form->input('number');
-    echo $this->Form->input('first_name');
-    echo $this->Form->input('last_name');
-    echo $this->Form->button('Filter', ['type' => 'submit']);
-    echo $this->Html->link('Reset', ['action' => 'index']);
-    echo $this->Form->end();
-    ?>
+    
     
     <table cellpadding="0" cellspacing="0">
         <thead>
