@@ -280,6 +280,7 @@ class FormationCompletesController extends AppController
     // à Tester
     public function quickUpdateCsv() {
         $formationComplete = null;
+        $csvErrors = [];
         if ($this->request->is('post')) {
             if($this->request->data['csvFile']['size'] > 0) {
                 $csvFile = $this->request->data['csvFile'];
@@ -291,35 +292,59 @@ class FormationCompletesController extends AppController
                     $isRead = fopen($filePath, "r");
                     if ($isRead) {
                         while (($line = fgets($isRead)) !== false) {
+                            $lineOK = true;
                             $data = explode(';', $line);
 
                             $formation = $this->FormationCompletes->Formations->find()
                                     ->where(['number' => (int)$data[0]])
                                     ->first();
+                            
+                            if($formation == null)  {
+                                array_push($csvErrors, [$line, "The formation #". $data[0] ." doesn't exist."]);
+                                $lineOK = false;
+                            }
 
                             $employee = $this->FormationCompletes->Employees->find()
                                     ->where(['number' => (int)$data[1]])
                                     ->first();
                             
-                            $currentFormation = $this->FormationCompletes->find()
+                            if($employee == null)  {
+                                array_push($csvErrors, [$line, "The employee #". $data[1] ." doesn't exist."]);
+                                $lineOK = false;
+                            }
+                            
+                            if($lineOK) {
+                                $currentFormation = $this->FormationCompletes->find()
                                     ->where(['formation_id' => $formation->id, 'employee_id' => $employee->id])
                                     ->first();
 
-                            $formationComplete = $this->FormationCompletes->get($currentFormation->id);
-                            
-                            $formationComplete->lastTime_completed = date($data[2]);
-
-                            if (!$this->FormationCompletes->save($formationComplete)) {
-                                $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
-                                return $this->redirect(['controller' => 'FormationCompletes', 'action' => 'quickUpdateCsv']);
-                            } else {
-                                $this->Flash->success(__('All the formations have been saved.'));
-                                return $this->redirect(['controller' => 'Employees', 'action' => 'index']);
+                                $formationComplete = $this->FormationCompletes->get($currentFormation->id);
+                                $date = date_create($data[2]);
+                                if(date_format($date, "Y-m-d")) {
+                                    $formationComplete->lastTime_completed = date($data[2]);
+                                } else {
+                                    array_push($csvErrors, [$line, "The date must have this format : 2017-05-12 (Y-m-d)."]);
+                                    $lineOK = false;
+                                }
                             }
 
+                            if($lineOK) {
+                                if (!$this->FormationCompletes->save($formationComplete)) {
+                                    $this->Flash->error(__('The formation complete could not be saved. Please, try again.'));
+                                    return $this->redirect(['controller' => 'FormationCompletes', 'action' => 'quickUpdateCsv']);
+                                }
+                            }
                         }
                         fclose($isRead);
                         unlink($filePath);
+
+                        if(empty($csvErrors)) {
+                            $this->Flash->success(__('All the formations have been saved.'));
+                            return $this->redirect(['controller' => 'Employees', 'action' => 'index']);
+                        } else {
+                            $this->Flash->error(__('There were some errors in the csv file.'));
+                        }
+                        
                     } else {
                         $this->Flash->error(__('Unable to read the file, please try again.'));
                     } 
@@ -329,8 +354,7 @@ class FormationCompletesController extends AppController
             }
         }
 
-        $this->set(compact('formationComplete'));
-        $this->set('_serialize', ['formationComplete']);
+        $this->set(compact('formationComplete', 'csvErrors'));
+        $this->set('_serialize', ['formationComplete', 'csvErrors']);
     }
-    
 }

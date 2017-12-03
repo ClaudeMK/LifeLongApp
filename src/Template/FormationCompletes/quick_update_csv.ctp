@@ -35,4 +35,26 @@ $loguser = $this->request->session()->read('Auth.User');
     <input type="file" name="csvFile" />
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+    
+    <?php 
+    if(!empty($csvErrors)) { ?>
+        <br /><br /><br />
+        <h4>Errors</h4>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col">Line</th>
+                <th scope="col">Error</th>
+            </tr>
+            <?php foreach($csvErrors as $error): ?>
+            <tr>
+                <td>
+                    <?= $error[0]; ?>
+                </td>
+                <td>
+                    <?= $error[1]; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php } ?>
 </div>
