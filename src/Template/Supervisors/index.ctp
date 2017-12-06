@@ -32,8 +32,7 @@ $loguser = $this->request->session()->read('Auth.User');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($supervisors as $supervisor): ?>
-            <?php if($supervisor->id != 1) { ?>          
+            <?php foreach ($supervisors as $supervisor): ?>       
                 <tr>
                     <td><?= h($supervisor->number) ?></td>
                     <td><?= h($supervisor->last_name) ?></td>
@@ -42,10 +41,9 @@ $loguser = $this->request->session()->read('Auth.User');
                     <td><?= h($supervisor->email) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $supervisor->id]) ?>
-                        <?= $this->Html->link(__('Edit Rapport#2'), ['action' => 'rapportTwo', $supervisor->id]) ?>
+                        <?= $this->Html->link(__('Rapport#2'), ['action' => 'rapportTwo', $supervisor->id], array('target' => '_blank')) ?>
                     </td>
                 </tr>
-            <?php } ?>
             <?php endforeach; ?>
         </tbody>
     </table>

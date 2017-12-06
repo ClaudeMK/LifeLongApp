@@ -151,10 +151,6 @@ class EmployeesController extends AppController {
                         $newSupervisor->isSupervisor = true;
                         $this->Employees->save($newSupervisor);
                     }
-//                    debug($this->Employees->find('all')->where(['parent_id' => $oldSupervisorID])->count());
-//                    debug($oldSupervisor);
-//                    debug($newSupervisor);
-//                    die();
                 }
                 $this->Flash->success(__('The employee has been saved.'));
 

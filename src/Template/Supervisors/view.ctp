@@ -98,7 +98,6 @@
                 <td><?= h($childEmployees->position_title->title) ?></td>
                 <td><?= h($childEmployees->last_sent_formation_plan) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Employees', 'action' => 'view', $childEmployees->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Employees', 'action' => 'edit', $childEmployees->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Employees', 'action' => 'delete', $childEmployees->id], ['confirm' => __('Are you sure you want to delete # {0}?', $childEmployees->id)]) ?>
                 </td>

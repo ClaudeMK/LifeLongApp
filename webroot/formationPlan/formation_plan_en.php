@@ -87,7 +87,6 @@ use App\Controller\FormationsPositionTitlesController;
                     }
                     $expired = '';
                     $expectedOn = '';
-                    $Todo = '';
                     $expiredDisplay = '';
                     $toCome = '';
                     $toComeDisplay = '';
