@@ -19,7 +19,7 @@ class CategoriesControllerTest extends IntegrationTestCase
         'app.categories',
         'app.formations',
         'app.frequencies',
-        'app.start_notifications',
+        'app.notifications',
         'app.modalities'
     ];
 

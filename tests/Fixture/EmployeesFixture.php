@@ -67,7 +67,8 @@ class EmployeesFixture extends TestFixture
             'building_id' => 1,
             'parent_id' => 1,
             'additional_Infos' => 'Lorem ipsum dolor sit amet',
-            'last_sent_formation_plan' => '2017-09-20 19:08:43',
+            //'last_sent_formation_plan' => '2017-09-20 19:08:43',
+            'last_sent_formation_plan' => null,
             'active' => 1
         ],
     ];

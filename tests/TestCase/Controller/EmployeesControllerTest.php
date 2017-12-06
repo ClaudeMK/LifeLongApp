@@ -68,8 +68,33 @@ class EmployeesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+    
+    /**
+ * test fnish() method
+ *
+ * @return void
+ */
+  public function testEditPhoneDots() {
+      $data = '1234567890';
+      $employee = new EmployeesController();
+      $this->assertEquals('123.456.7890',  $employee->editPhoneDots($data));
+  }
+  
+  public function testFirstUpper(){
+      $dataLetter = 'allo';
+      $employee = new EmployeesController();
+      $this->assertEquals('Allo',  $employee->editFirstLetterUpper($dataLetter));
+  }
+  
+  public function testSendFP(){
+      $employees = new EmployeesController();
+      $employee->Employees->get(1);
+      $employees->nouvelleMethode($employee);
+      $this->assertNotNull($employee->last_sent_formation_plan);
+  }
+  // Prochainement Test Erroné!
+  public function testDelete(){
+      $employee = new EmployeesController();
+      $this->assertEquals(null, $employee->delete());
+  }
 }

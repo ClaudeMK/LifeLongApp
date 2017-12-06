@@ -71,4 +71,10 @@ class FormationsControllerTest extends IntegrationTestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+    
+    public function testFirstUpper(){
+      $dataLetter = 'allo';
+      $formation = new FormationsController();
+      $this->assertEquals('Allo',  $formation->editFirstLetterUpper($dataLetter));
+  }
 }
