@@ -33,19 +33,22 @@ $loguser = $this->request->session()->read('Auth.User');
             echo '<li>'.$this->Html->link(__('Users'), ['controller' => 'Users', 'action' => 'index']).'</li>';
         } ?>
         <br />
-        <li><?= '<li>'.$this->Html->link(__('Quick Update'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdate']).'</li>'; ?></li>
+        <li><?= '<li>'.$this->Html->link(__('Quick Update - Manual'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdate']).'</li>'; ?></li>
+        <li><?= '<li>'.$this->Html->link(__('Quick Update - CSV File'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdateCsv']).'</li>'; ?></li>
     </ul>
 </nav>
 <div class="formationCompletes form large-9 medium-8 columns content">
     <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
-    <h3><?= __('Quick Update') ?></h3>
+    <h3><?= __('Quick Update - Manual') ?></h3>
     <?php $this->Html->script('quickUpdate', ['block' => true]); ?>
     <?php
         echo $this->Form->control('employee_id', ['default' => $selectedEmployee->id]);
         echo $this->Form->control('formation_id', ['options'  => $cleanFormations]);
-        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker']);   
-        echo $this->Form->control('comment');
-    ?>
+        echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker', 'placeholder' => date('m-d-y')]);   
+        echo $this->Form->control('comment', ['default' => '']);
+    ?><br />
+    <label for="pieceJointe">Attachment</label>
+    <input type="file" name="pieceJointe" />
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>

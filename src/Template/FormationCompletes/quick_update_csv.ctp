@@ -1,7 +1,7 @@
 <?php
 /**
   * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Language[]|\Cake\Collection\CollectionInterface $languages
+  * @var \App\Model\Entity\Employee[]|\Cake\Collection\CollectionInterface $employees
   */
 $loguser = $this->request->session()->read('Auth.User');
 ?>
@@ -27,42 +27,34 @@ $loguser = $this->request->session()->read('Auth.User');
         <li><?= '<li>'.$this->Html->link(__('Quick Update - Manual'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdate']).'</li>'; ?></li>
         <li><?= '<li>'.$this->Html->link(__('Quick Update - CSV File'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdateCsv']).'</li>'; ?></li>
     </ul>
-    <br /><br />
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions Languages') ?></li>
-        <li><?= $this->Html->link(__('New Languages'), ['controller' => 'Languages', 'action' => 'add']) ?> </li>
-    </ul>
 </nav>
-<div class="languages index large-10 medium-9 columns content">
-    <h3><?= __('Languages') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
+<div class="formationCompletes form large-9 medium-8 columns content">
+    <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
+    <h3><?= __('Quick Update - CSV File') ?></h3>
+    <label for="csvFile">CSV File</label>
+    <input type="file" name="csvFile" />
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+    
+    <?php 
+    if(!empty($csvErrors)) { ?>
+        <br /><br /><br />
+        <h4>Errors</h4>
+        <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col">Line</th>
+                <th scope="col">Error</th>
             </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($languages as $language): ?>
+            <?php foreach($csvErrors as $error): ?>
             <tr>
-                <td><?= h($language->title) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $language->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $language->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $language->id], ['confirm' => __('Are you sure you want to delete # {0}?', $language->id)]) ?>
+                <td>
+                    <?= $error[0]; ?>
+                </td>
+                <td>
+                    <?= $error[1]; ?>
                 </td>
             </tr>
             <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+        </table>
+    <?php } ?>
 </div>

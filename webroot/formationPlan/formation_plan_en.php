@@ -20,7 +20,7 @@ use App\Controller\FormationsPositionTitlesController;
 
     </head>
     <body>
-        <h1><img src="../../../webroot/img/logo/lifelongBlue.png" alt="Logo">  Formation plan</h1>
+        <h1><img src="/home/lifelong/public_html/webroot/img/logo/lifelongBlue.png" alt="Logo">  Formation plan</h1>
         <hr/>
         <?php
         echo 'Employes number : ' . h($employee->number) . "<br>";
@@ -87,6 +87,7 @@ use App\Controller\FormationsPositionTitlesController;
                     }
                     $expired = '';
                     $expectedOn = '';
+
                     $expiredDisplay = '';
                     $toCome = '';
                     $toComeDisplay = '';
