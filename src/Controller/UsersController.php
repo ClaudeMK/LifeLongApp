@@ -8,6 +8,7 @@ use Cake\Mailer\Email;
 use Cake\ORM\TableRegistry;
 use Cake\I18n\FrozenTime;
 use Dompdf\Dompdf;
+use App\Controller\EmployeesController;
 
 /**
  * Users Controller
@@ -169,9 +170,9 @@ class UsersController extends AppController {
                 $formationCompletes = $formationCompletes->toArray();
                 ob_start();
                 if ($lang == 1) {
-                    include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
+                    include "/formationPlan/formation_plan_fr.php";
                 } else {
-                    include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
+                    include "/formationPlan/formation_plan_en.php";
                 }
                 $html = ob_get_clean();
                 ob_end_clean();
@@ -188,19 +189,17 @@ class UsersController extends AppController {
 
                 // Output the generated PDF to Browser
                 $pdf_gen = $dompdf->output();
-                if (file_put_contents('C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf', $pdf_gen)) {
+                
+                if (file_put_contents('C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/webroot/formationPlan/formationPlan.pdf', $pdf_gen)) {
                     $email = new Email('default');
                     $email->to($emailEmp)
-                            ->setAttachments(['formationPlan.pdf' => 'C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formationPlan.pdf'])
+                            ->setAttachments(['formationPlan.pdf' => 'C:/EasyPHP-Devserver-17/eds-www/LifeLongApp/webroot/formationPlan/formationPlan.pdf'])
                             ->subject("Formation plan of " . $curr_timestamp)
                             ->send("Formation plan");
                     $employee->last_sent_formation_plan = $curr_timestamp;
                     $this->Employees->save($employee);
                     $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
                 }
-                
-                
-                
             } else {
                 $this->Flash->success(__('Your formation plan has been sent to your email. Thank you!'));
             }

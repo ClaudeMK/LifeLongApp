@@ -152,4 +152,44 @@ class SupervisorsController extends AppController {
         $this->setAction('index');
     }
 
+    public function rapportFour() {
+        $this->loadModel('Employees');
+        $curr_timestamp = date('Y-m-d H:i:s');
+
+        $supervisors = $this->Employees->find('all', [
+                    'contain' => ['ChildEmployees' => ['PositionTitles']]
+                ])->where(['Employees.isSupervisor' => true, 'Employees.id !=' => 1, 'Employees.active' => true]);
+
+        $tabEmployeeEtFormations = array();
+        $tabSuperviseurEmployeesFormations = array();
+        foreach ($supervisors as $supervisor) {
+            $employees = $supervisor->child_employees;
+            foreach ($employees as $employee) {
+                $this->loadModel('FormationCompletes');
+                $formationCompletes = $this->FormationCompletes->find('all')
+                        ->where(['FormationCompletes.employee_id = ' => $employee->id]);
+                $formationCompletes = $formationCompletes->toArray();
+                array_push($tabEmployeeEtFormations, [$employee, $formationCompletes]);
+            }
+            array_push($tabSuperviseurEmployeesFormations, [$supervisor, $tabEmployeeEtFormations]);
+        }
+        ob_start();
+        include "/rapports/rapport4.php";
+        $html = ob_get_clean();
+        ob_end_clean();
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+
+        // Output the generated PDF to Browser
+        $dompdf->stream('/rapports/rapport4.pdf', array("Attachment" => false));
+        $this->setAction('index');
+    }
+
 }

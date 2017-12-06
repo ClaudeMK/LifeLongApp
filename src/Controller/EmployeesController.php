@@ -266,9 +266,9 @@ class EmployeesController extends AppController {
         $formationCompletes = $formationCompletes->toArray();
         ob_start();
         if ($lang == 1) {
-            include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_fr.php";
+            include "/formationPlan/formation_plan_fr.php";
         } else {
-            include "C:/Program Files (x86)/Ampps/www/LifeLongApp/src/Template/Employees/TemplateFormationPlan/formation_plan_en.php";
+            include "/formationPlan/formation_plan_en.php";
         }
         $html = ob_get_clean();
         ob_end_clean();

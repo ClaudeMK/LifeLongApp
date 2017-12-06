@@ -19,7 +19,7 @@ use App\Controller\FormationsPositionTitlesController;
         </style>
     </head>
     <body>
-        <h1><img src="C:/Program Files (x86)/Ampps/www/LifeLongApp/webroot/img/logo/lifelongBlue.png" alt="Logo">Rapport par superviseur</h1>
+        <h1><img src="/home/lifelong/public_html/webroot/img/logo/lifelongBlue.png" alt="Logo">Rapport #2 | Équipe par superviseur</h1>
         <hr/>
         <?php
         $this->loadModel('Formations');
@@ -52,24 +52,21 @@ use App\Controller\FormationsPositionTitlesController;
                 $compteur = !$compteur;
                 ?>
                 <tr style="<?= $style ?>">
-                    <td><?php echo $ligne[0]->first_name . " " . $ligne[0]->last_name; ?></td>
+                    <td><?php echo $ligne[0]->last_name . ", " . $ligne[0]->first_name; ?></td>
                     <td><?= $ligne[0]->number ?></td>
-
                     <?php
                     $nbExpired = 0.0;
                     $nbExpected = 0.0;
                     $nbNeverDone = 0.0;
                     $nbUpdated = 0.0;
                     $nbCompleted = 0.0;
-                    foreach ($ligne[1] as $formationComplete):
+                    foreach ($ligne[1] as $formationComplete) {
                         $formationI = $this->Formations->get($formationComplete->formation_id, [
                             'contain' => ['Frequencies', 'Notifications']
                         ]);
-                        $Todo = '';
                         $expired = ''; //
                         $expectedOn = ''; //
                         $toCome = ''; //
-
                         $notificationId = $formationI->notification_id;
                         $frequencyId = $formationI->frequencie_id;
                         $now = new Time();
@@ -101,16 +98,19 @@ use App\Controller\FormationsPositionTitlesController;
                         } else {
                             $nbNeverDone++;
                         }
-                    endforeach;
+                    }
                     ?>
                     <td><?= $nbExpired ?></td>
                     <td><?= $nbExpected ?></td>
                     <td><?= $nbNeverDone ?></td>
                     <td><?= $nbUpdated ?></td>
-                    <td><?= count($ligne[1]) ?></td>
-                    <td><?= number_format(($nbUpdated * 100 / count($ligne[1])),2) . '%' ?></td>
+                    <td><?= ($nbExpired + $nbUpdated) ?></td>
+                    <td><?php
+                        if (($nbExpired + $nbUpdated) != 0) {
+                            echo number_format(($nbUpdated * 100 / ($nbExpired + $nbUpdated)), 2) . '%';
+                        }
+                        ?></td>
                 </tr>
-
                 <?php
             }
             ?>
@@ -118,5 +118,5 @@ use App\Controller\FormationsPositionTitlesController;
         <hr/>
         <p>Printed the <?= $curr_timestamp ?></p>
     </body>
-    <?php// die(); ?>
+    <?php die(); ?>
 </html>
