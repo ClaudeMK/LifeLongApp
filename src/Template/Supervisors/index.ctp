@@ -13,7 +13,7 @@ $loguser = $this->request->session()->read('Auth.User');
     <br /><br />
     <ul class="side-nav">
         <li class="heading"><?= __('Actions Supervisors') ?></li>
-        <li><?= $this->Html->link(__('Edit Rapport#4'), ['controller' => 'Supervisors', 'action' => 'rapportFour']) ?> </li>
+        <li><?= $this->Html->link(__('Edit Rapport#4'), ['controller' => 'Supervisors', 'action' => 'rapportFour'], array('target' => '_blank')) ?> </li>
     </ul>
 </nav>
 <div class="employees index large-10 medium-9 columns content">

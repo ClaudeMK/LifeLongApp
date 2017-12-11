@@ -118,5 +118,5 @@ use App\Controller\FormationsPositionTitlesController;
         <hr/>
         <p>Printed the <?= $curr_timestamp ?></p>
     </body>
-    <?php die(); ?>
+    <?php //die(); ?>
 </html>
