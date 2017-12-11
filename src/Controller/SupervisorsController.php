@@ -159,11 +159,10 @@ class SupervisorsController extends AppController {
         $supervisors = $this->Employees->find('all', [
                     'contain' => ['ChildEmployees' => ['PositionTitles']]
                 ])->where(['Employees.isSupervisor' => true, 'Employees.id !=' => 1, 'Employees.active' => true]);
-
-        $tabEmployeeEtFormations = array();
         $tabSuperviseurEmployeesFormations = array();
         foreach ($supervisors as $supervisor) {
             $employees = $supervisor->child_employees;
+            $tabEmployeeEtFormations = array();
             foreach ($employees as $employee) {
                 $this->loadModel('FormationCompletes');
                 $formationCompletes = $this->FormationCompletes->find('all')

@@ -80,7 +80,7 @@ class EmployeesController extends AppController {
             $employee->last_name = $this->editFirstLetterUpper($employee->last_name);
             $employee->additional_Infos = $this->removeSpace($employee->additional_Infos);
             $employee->additional_Infos = $this->editFirstLetterUpper($employee->additional_Infos);
-            
+
 
             $data = $employee->cell_number;
             if ($employee->parent_id == null) {
@@ -111,14 +111,14 @@ class EmployeesController extends AppController {
         $this->set('_serialize', ['employee']);
     }
 
-    public function editFirstLetterUpper($dataLetter){
+    public function editFirstLetterUpper($dataLetter) {
         return (ucfirst($dataLetter));
     }
-    
+
     public function editPhoneDots($data) {
         return(substr($data, 0, 3) . '.' . substr($data, 3, 3) . '.' . substr($data, 6));
     }
-    
+
     public function removeSpace($input) {
         return (trim($input));
     }
@@ -199,16 +199,19 @@ class EmployeesController extends AppController {
     public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $employee = $this->Employees->get($id);
-        if ($this->Employees->delete($employee)) {
-            $this->loadModel('FormationCompletes');
-            $this->FormationCompletes->deleteAll([
-                'employee_id' => $id
-            ]);
-            $this->Flash->success(__('The employee has been deleted.'));
-        } else {
-            $this->Flash->error(__('The employee could not be deleted. Please, try again.'));
+        if (!$employee->isSupervisor) {
+            if ($this->Employees->delete($employee)) {
+                $this->loadModel('FormationCompletes');
+                $this->FormationCompletes->deleteAll([
+                    'employee_id' => $id
+                ]);
+                $this->Flash->success(__('The employee has been deleted.'));
+            } else {
+                $this->Flash->error(__('The employee could not be deleted.'));
+            }
+        }else{
+            $this->Flash->error(__('This employee is a supervisor. He could not be deleted. Please, try again.'));
         }
-
         return $this->redirect(['action' => 'index']);
     }
 

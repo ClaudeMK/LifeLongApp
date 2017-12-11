@@ -39,8 +39,6 @@ use App\Controller\FormationsPositionTitlesController;
             <?php
             $style_gray = "background-color: #DCDCDC;";
             $style_white = "background-color = white;";
-            debug($tabSuperviseurEmployeesFormations);
-            die();
             foreach ($tabSuperviseurEmployeesFormations as $ligneSupervisor) {
                 if ($compteur) {
                     $style = $style_gray;
@@ -94,9 +92,7 @@ use App\Controller\FormationsPositionTitlesController;
                                     $nbUpdated++;
                                 }
                             } else {
-                                
                                 $nbNeverDone++;
-                                debug($nbNeverDone);
                             }
                         }
                     }
