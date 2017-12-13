@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
@@ -15,15 +15,15 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="positionTitles form large-10 medium-9 columns content">
+<div class="positionTitles form col-md-10 content">
     <?= $this->Form->create($positionTitle) ?>
     <fieldset>
         <legend><?= __('Edit Position Title') ?></legend>
         <?php
-            echo $this->Form->control('title');
-            echo $this->Form->control('formations._ids', ['options' => $formations]);
+            echo $this->Form->control('title', ['class' => 'btn btn-primary btn-filter']);
+            echo $this->Form->control('formations._ids', ['options' => $formations, 'class' => 'form-control', 'id' => 'exampleSelect2']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-filter']) ?>
     <?= $this->Form->end() ?>
 </div>

@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\Formation $formation
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Formation'), ['action' => 'edit', $formation->id]) ?> </li>
@@ -12,9 +12,9 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
-<div class="formations view large-10 medium-9 columns content">
+<div class="formations view col-md-10 content">
     <h3><?= h($formation->title) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
         <tr>
             <th scope="row"><?= __('Number') ?></th>
             <td><?= h($formation->number) ?></td>
@@ -48,7 +48,7 @@
         <h4><?= __('Related Position titles') ?></h4>
 
         <?php if(!empty($formation->position_titles)): ?>
-          <table>
+          <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
               <tr>
                 <th scope="col"><?= __('Title') ?></th>
               </tr>

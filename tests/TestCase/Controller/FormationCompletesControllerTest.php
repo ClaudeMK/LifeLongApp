@@ -17,66 +17,63 @@ class FormationCompletesControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.formation_completes',
-        'app.employees',
-        'app.civilities',
-        'app.languages',
-        'app.position_titles',
-        'app.formations',
-        'app.categories',
-        'app.frequencies',
-        'app.modalities',
-        'app.notifications',
-        //'app.formations_position_titles',
-        'app.buildings'
+        
     ];
 
-    /**
-     * Test index method
-     *
-     * @return void
-     */
-    public function testIndex()
+    /*
+    public function testExtCSV()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $controller = new FormationCompletesController();
+        $filePath = "D:/Claude/Documents/aaa_TESTS/testExtCSV.csv";
+        $ext = end(explode('.', $filePath));
+        $this->assertTrue($controller->fileOK($ext));
     }
+    
+    public function testExtTXT()
+    {
+        $controller = new FormationCompletesController();
+        $filePath = "D:/Claude/Documents/aaa_TESTS/testExtTXT.txt";
+        $ext = end(explode('.', $filePath));
+        $this->assertTrue($controller->fileOK($ext));
+    }
+    
+    public function testExtPNG()
+    {
+        $controller = new FormationCompletesController();
+        $filePath = "D:/Claude/Documents/aaa_TESTS/testExtPNG.png";
+        $ext = end(explode('.', $filePath));
+        $this->assertFalse($controller->fileOK($ext));
+    }
+    
+    public function testEmptyFile()
+    {
+        $controller = new FormationCompletesController();
+        $file = fopen("D:/Claude/Documents/aaa_TESTS/testEmptyFile.csv", "r");
+        $lineContent = fgets($file);
+        fclose($file);
+        $this->assertTrue($controller->fileNotEmptyForTest($lineContent) == 0);
+    }
+    */
+    public function testFileOK()
+    {
+        
+        $controller = new FormationCompletesController();
+        $file = fopen("D:/Claude/Documents/aaa_TESTS/testFileOK.csv", "r");
+        $lineContent = fgets($file);
+        fclose($file);
+        $this->assertTrue($controller->fileNotEmptyForTest($lineContent) > 0);
+    }
+    /*
+    public function testInvalidDate()
+    {
+        $controller = new FormationCompletesController();
+        $this->assertFalse($controller->dateValid("99", "32", "1990"));
+    }
+    
+    public function testvalidDate()
+    {
+        $controller = new FormationCompletesController();
 
-    /**
-     * Test view method
-     *
-     * @return void
-     */
-    public function testView()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+        $this->assertTrue($controller->dateValid("05", "12", "1990"));
+    }*/
 }

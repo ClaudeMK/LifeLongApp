@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\Notification $notification
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Notification'), ['action' => 'edit', $notification->id]) ?> </li>
@@ -12,9 +12,9 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="notifications view large-9 medium-8 columns content">
+<div class="notifications view col-md-10 content">
     <h3><?= h($notification->title) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
         <tr>
             <th scope="row"><?= __('Title') ?></th>
             <td><?= h($notification->title) ?></td>
@@ -23,7 +23,7 @@
     <div class="related">
         <h4><?= __('Related Formations') ?></h4>
         <?php if (!empty($notification->formations)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
             <tr>
                 <th scope="col"><?= __('Number') ?></th>
                 <th scope="col"><?= __('Title') ?></th>

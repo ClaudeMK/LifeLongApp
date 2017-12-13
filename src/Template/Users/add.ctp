@@ -3,24 +3,24 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Back'), ['controller' => 'Users', 'action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="users form large-10 medium-9 columns content">
+<div class="users form col-md-10 content">
     <?= $this->Form->create($user) ?>
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
+            echo $this->Form->control('username', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('password', ['class' => 'form-control', 'id' => 'exampleInputPassword1']);
             echo $this->Form->control('role', [
-            'options' => ['Administrator' => 'Administrator', 'Coordinator' => 'Coordinator']
+            'options' => ['Administrator' => 'Administrator', 'Coordinator' => 'Coordinator'], 'class' => 'form-control', 'id' => 'exampleSelect1'
             ])
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-filter']) ?>
     <?= $this->Form->end() ?>
 </div>

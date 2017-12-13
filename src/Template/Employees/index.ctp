@@ -5,7 +5,7 @@
   */
 $loguser = $this->request->session()->read('Auth.User');
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Navigation') ?></li>
         <li><?= $this->Html->link(__('Employees'), ['controller' => 'Employees', 'action' => 'index']) ?> </li>
@@ -35,21 +35,19 @@ $loguser = $this->request->session()->read('Auth.User');
         <li><?= $this->Html->link(__('New Employees'), ['controller' => 'Employees', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
-<div class="employees index large-10 medium-9 columns content">
+<div class="employees index col-md-10 content">
     <h3><?= __('Employees') ?></h3>
     <?php
     echo $this->Form->create(null, ['valueSources' => 'query']);
-    // You'll need to populate $authors in the template from your controller
-    // Match the search param in your table configuration
-    echo $this->Form->input('number');
-    echo $this->Form->input('first_name');
-    echo $this->Form->input('last_name');
-    echo $this->Form->button('Filter', ['type' => 'submit']);
-    echo $this->Html->link('Reset', ['action' => 'index']);
+    echo $this->Form->input('number', ['class' => 'btn btn-primary btn-filter']);
+    echo $this->Form->input('first_name', ['class' => 'btn btn-primary btn-filter']);
+    echo $this->Form->input('last_name', ['class' => 'btn btn-primary btn-filter']);
+    echo $this->Form->button('Filter', ['type' => 'submit', 'class' => 'btn btn-primary btn-filter']);
+    echo $this->Html->link('Reset', ['action' => 'index', 'class' => 'reset-link']);
     echo $this->Form->end();
     ?>
     
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('number') ?></th>
@@ -90,7 +88,7 @@ $loguser = $this->request->session()->read('Auth.User');
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
+    <div>
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
@@ -98,6 +96,6 @@ $loguser = $this->request->session()->read('Auth.User');
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p class="pagination-counter"><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>

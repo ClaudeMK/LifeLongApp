@@ -5,7 +5,7 @@
   */
 $loguser = $this->request->session()->read('Auth.User');
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Navigation') ?></li>
         <li><?= $this->Html->link(__('Employees'), ['controller' => 'Employees', 'action' => 'index']) ?> </li>
@@ -28,19 +28,19 @@ $loguser = $this->request->session()->read('Auth.User');
         <li><?= '<li>'.$this->Html->link(__('Quick Update - CSV File'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdateCsv']).'</li>'; ?></li>
     </ul>
 </nav>
-<div class="formationCompletes form large-9 medium-8 columns content">
+<div class="formationCompletes form col-md-10 content">
     <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
     <h3><?= __('Quick Update - CSV File') ?></h3>
     <label for="csvFile">CSV File</label>
-    <input type="file" name="csvFile" />
-    <?= $this->Form->button(__('Submit')) ?>
+    <input type="file" name="csvFile" class="form-control-file" id="exampleInputFile" />
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-filter']) ?>
     <?= $this->Form->end() ?>
     
     <?php 
     if(!empty($csvErrors)) { ?>
         <br /><br /><br />
         <h4>Errors</h4>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
             <tr>
                 <th scope="col">Line</th>
                 <th scope="col">Error</th>

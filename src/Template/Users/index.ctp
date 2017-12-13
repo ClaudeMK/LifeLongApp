@@ -6,7 +6,7 @@
 $loguser = $this->request->session()->read('Auth.User');
 //test
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Navigation') ?></li>
         <li><?= $this->Html->link(__('Employees'), ['controller' => 'Employees', 'action' => 'index']) ?> </li>
@@ -34,9 +34,9 @@ $loguser = $this->request->session()->read('Auth.User');
         <li><?= $this->Html->link(__('New Users'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
-<div class="users index large-10 medium-9 columns content">
+<div class="users index col-md-2 content">
     <h3><?= __('Users') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('username') ?></th>
@@ -62,14 +62,14 @@ $loguser = $this->request->session()->read('Auth.User');
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
+    <div>
+        <ul class="pagination pagination-small">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p class="pagination-counter"><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>

@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\Employee $supervisor
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Employee'), ['action' => 'edit', $supervisor->id]) ?> </li>
@@ -12,9 +12,9 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
-<div class="employees view large-10 medium-9 columns content">
+<div class="employees view col-md-10 content">
     <h3><?= h($supervisor->id) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
         <tr>
             <th scope="row"><?= __('Number') ?></th>
             <td><?= h($supervisor->number) ?></td>
@@ -77,7 +77,7 @@
     <div class="related">
         <h4><?= __('Related Employees') ?></h4>
         <?php if (!empty($supervisor->child_employees)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
             <tr>
                 <th scope="col"><?= __('Number') ?></th>
                 <th scope="col"><?= __('Last Name') ?></th>

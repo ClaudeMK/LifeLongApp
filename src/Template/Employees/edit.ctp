@@ -4,7 +4,7 @@
   */
   use Cake\I18n\Time;
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Send formation plan'), ['action' => 'sendFormationPlan', $employee->id, 'edit']) ?></li>
@@ -18,34 +18,34 @@
         
     </ul>
 </nav>
-<div class="employees form large-10 medium-9 columns content">
+<div class="employees form col-md-10 content">
     <?= $this->Form->create($employee) ?>
     <fieldset>
         <legend><?= __('Edit Employee') ?></legend>
         <?php
-            echo $this->Form->control('number');
-            echo $this->Form->control('civilitie_id');
-            echo $this->Form->control('last_name');
-            echo $this->Form->control('first_name');
-            echo $this->Form->control('language_id', ['options' => $languages]);
-            echo $this->Form->control('cell_number');
-            echo $this->Form->control('email');
-            echo $this->Form->control('position_title_id', ['options' => $positionTitles]);
-            echo $this->Form->control('building_id', ['options' => $buildings]);
-            echo $this->Form->control('parent_id', ['options' => $parentEmployees]);
-            echo $this->Form->control('additional_Infos');
+            echo $this->Form->control('number', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('civilitie_id', ['class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('last_name', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('first_name', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('language_id', ['options' => $languages, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('cell_number', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('email', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('position_title_id', ['options' => $positionTitles, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('building_id', ['options' => $buildings, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('parent_id', ['options' => $parentEmployees, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('additional_Infos', ['class' => 'form-control', 'id' => 'exampleTextarea', 'rows' => '3']);
 
             echo $this->Form->control('active');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-filter']) ?>
     <?= $this->Form->end() ?>
 
     <div class="related">
       <h4><?= __('Related Formations') ?></h4>
       <?php $compteur = 0; ?>
       <?php if(!empty($employee->position_title->formations)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
           <tr>
               <th scope="col"><?= __('title') ?></th>
               <th scope="col"><?= __('Category') ?></th>
