@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\User $user
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
@@ -12,9 +12,9 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
-<div class="users view large-10 medium-9 columns content">
+<div class="users view col-md-10 content">
     <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
         <tr>
             <th scope="row"><?= __('Username') ?></th>
             <td><?= h($user->username) ?></td>

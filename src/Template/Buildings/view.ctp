@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\Building $building
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Building'), ['action' => 'edit', $building->id]) ?> </li>
@@ -12,7 +12,7 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
-<div class="buildings view large-10 medium-9 columns content">
+<div class="buildings view col-md-10 content">
     <h3><?= h($building->id) ?></h3>
     <table class="vertical-table">
         <tr>
@@ -23,7 +23,7 @@
     <div class="related">
         <h4><?= __('Related Employees') ?></h4>
         <?php if (!empty($building->employees)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
             <tr>
                 <th scope="col"><?= __('Number') ?></th>
                 <th scope="col"><?= __('Civility') ?></th>

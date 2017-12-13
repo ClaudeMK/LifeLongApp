@@ -14,7 +14,7 @@
   */
 $loguser = $this->request->session()->read('Auth.User');
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Navigation') ?></li>
         <li><?= $this->Html->link(__('Employees'), ['controller' => 'Employees', 'action' => 'index']) ?> </li>
@@ -37,19 +37,19 @@ $loguser = $this->request->session()->read('Auth.User');
         <li><?= '<li>'.$this->Html->link(__('Quick Update - CSV File'), ['controller' => 'FormationCompletes', 'action' => 'quickUpdateCsv']).'</li>'; ?></li>
     </ul>
 </nav>
-<div class="formationCompletes form large-9 medium-8 columns content">
+<div class="formationCompletes form col-md-10 content">
     <?= $this->Form->create($formationComplete, ['type' => 'file']) ?>
     <h3><?= __('Quick Update - Manual') ?></h3>
     <?php $this->Html->script('quickUpdate', ['block' => true]); ?>
     <?php
-        echo $this->Form->control('employee_id', ['default' => $selectedEmployee->id]);
-        echo $this->Form->control('formation_id', ['options'  => $cleanFormations]);
+        echo $this->Form->control('employee_id', ['default' => $selectedEmployee->id, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+        echo $this->Form->control('formation_id', ['options'  => $cleanFormations, 'class' => 'form-control', 'id' => 'exampleSelect1']);
         echo $this->form->control('lastTime_completed', ['type' => 'text', 'id' => 'datepicker', 'placeholder' => date('m-d-y')]);   
-        echo $this->Form->control('comment', ['default' => '']);
+        echo $this->Form->control('comment', ['default' => '', 'class' => 'form-control', 'id' => 'exampleTextarea', 'rows' => '3']);
     ?><br />
     <label for="pieceJointe">Attachment</label>
-    <input type="file" name="pieceJointe" />
-    <?= $this->Form->button(__('Submit')) ?>
+    <input type="file" name="pieceJointe" class="form-control-file" id="exampleInputFile" />
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-filter']) ?>
     <?= $this->Form->end() ?>
 </div>
 

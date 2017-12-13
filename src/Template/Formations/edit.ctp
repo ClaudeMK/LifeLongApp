@@ -3,7 +3,7 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
@@ -15,22 +15,22 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="formations form large-10 medium-9 columns content">
+<div class="formations form col-md-10 content">
     <?= $this->Form->create($formation) ?>
     <fieldset>
         <legend><?= __('Edit Formation') ?></legend>
         <?php
-            echo $this->Form->control('number');
-            echo $this->Form->control('title');
-            echo $this->Form->control('categorie_id', ['options' => $categories]);
-            echo $this->Form->control('frequencie_id', ['options' => $frequencies]);
-            echo $this->Form->control('notification_id', ['options' => $frequencies]);
-            echo $this->Form->control('modalitie_id', ['options' => $modalities]);
+            echo $this->Form->control('number', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('title', ['class' => 'form-control', 'id' => 'inputDefault']);
+            echo $this->Form->control('categorie_id', ['options' => $categories, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('frequencie_id', ['options' => $frequencies, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('notification_id', ['options' => $frequencies, 'class' => 'form-control', 'id' => 'exampleSelect1']);
+            echo $this->Form->control('modalitie_id', ['options' => $modalities, 'class' => 'form-control', 'id' => 'exampleSelect1']);
             echo $this->Form->control('duration');
             echo $this->Form->control('note');
-            echo $this->Form->control('position_titles._ids', ['options' => $positionsTitles]);
+            echo $this->Form->control('position_titles._ids', ['options' => $positionsTitles, 'class' => 'form-control', 'id' => 'exampleSelect2']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary btn-filter']) ?>
     <?= $this->Form->end() ?>
 </div>

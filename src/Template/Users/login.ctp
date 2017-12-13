@@ -6,11 +6,11 @@
 <?= $this->Form->create() ?>
     <fieldset>
         <legend><?= __('Please enter your username and password') ?></legend>
-        <?= $this->Form->control('username') ?>
-        <?= $this->Form->control('password') ?>
+        <?= $this->Form->control('username', ['class' => 'form-control', 'id' => 'inputDefault']) ?>
+        <?= $this->Form->control('password', ['class' => 'form-control', 'id' => 'exampleInputPassword1']) ?>
         <?= $this->Form->hidden('form', ['value' => '1']) ?>
     </fieldset>
-<?= $this->Form->button(__('Login')); ?>
+<?= $this->Form->button(__('Login'), ['class' => 'btn btn-primary btn-filter']); ?>
 <?= $this->Form->end() ?>
 </div>
 <br /><br /><br />
@@ -19,9 +19,9 @@
 <?= $this->Form->create() ?>
     <fieldset>
         <legend><?= __('Please enter your email address to receive your formation plan') ?></legend>
-        <?= $this->Form->control('email') ?>
+        <?= $this->Form->control('email', ['class' => 'form-control', 'id' => 'exampleInputEmail1']) ?>
         <?= $this->Form->hidden('form', ['value' => '2']) ?>
     </fieldset>
-<?= $this->Form->button(__('Send')); ?>
+<?= $this->Form->button(__('Send'), ['class' => 'btn btn-primary btn-filter']); ?>
 <?= $this->Form->end() ?>
 </div>

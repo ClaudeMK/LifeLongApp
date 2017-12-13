@@ -4,7 +4,7 @@
   * @var \App\Model\Entity\Category $category
   */
 ?>
-<nav class="large-2 medium-3 columns" id="actions-sidebar">
+<nav class="col-md-2" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Category'), ['action' => 'edit', $category->id]) ?> </li>
@@ -12,7 +12,7 @@
         <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
-<div class="categories view large-10 medium-9 columns content">
+<div class="categories view col-md-10 content">
     <h3><?= h($category->title) ?></h3>
     <table class="vertical-table">
         <tr>
@@ -23,7 +23,7 @@
     <div class="related">
         <h4><?= __('Related Formations') ?></h4>
         <?php if (!empty($category->formations)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table table-hover" cellpadding="0" cellspacing="0" style="margin-top:20px;">
             <tr>
                 <th scope="col"><?= __('Number') ?></th>
                 <th scope="col"><?= __('title') ?></th>
